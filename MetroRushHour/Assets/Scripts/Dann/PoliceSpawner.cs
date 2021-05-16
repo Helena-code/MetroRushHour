@@ -18,13 +18,30 @@ public class PoliceSpawner : MonoBehaviour
                 playerPosition = player.transform.position;
                 if (playerPosition.x > 0)
                 {
-                    Instantiate(police, new Vector3(-spawningPosition.x, spawningPosition.y, spawningPosition.z), Quaternion.Euler(0f, -180f, 0f));
+                    SpawnPolice(-1);
                 }
                 else
                 {
-                    Instantiate(police, new Vector3(spawningPosition.x, spawningPosition.y, spawningPosition.z), Quaternion.identity);
+                    SpawnPolice(1);   
                 }
             }
         }
     }
+    void SpawnPolice(int direction)
+    {
+        if(direction < 0)
+        {
+            if (!FindObjectOfType<PoliceMovement>())
+            {
+                Instantiate(police, new Vector3(-spawningPosition.x, spawningPosition.y, spawningPosition.z), Quaternion.Euler(0f, -180f, 0f));
+            }
+        }
+        else
+        {
+            if (!FindObjectOfType<PoliceMovement>())
+            {
+                Instantiate(police, new Vector3(spawningPosition.x, spawningPosition.y, spawningPosition.z), Quaternion.identity);
+            }
+        }
+    }               
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PoliceMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PoliceMovement : MonoBehaviour
     Vector3 endPosition;
     bool playerCaught = false;
     bool playerInSight = false;
+    public UnityAction onPlayerLose;
     void Start()
     {
         endPosition = new Vector3(
@@ -23,7 +25,7 @@ public class PoliceMovement : MonoBehaviour
         }
         if (playerCaught)
         {
-            return;
+            // return;
         }
         if (playerInSight)
         {
@@ -32,7 +34,11 @@ public class PoliceMovement : MonoBehaviour
             if (distance <= 1f)
             {
                 playerCaught = true;
-                Debug.Log(playerCaught);
+                if (onPlayerLose != null)
+                {
+                    onPlayerLose.Invoke();
+                }
+                // Debug.Log(playerCaught);
             }
         }
         else
