@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TimeToTalkScript : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public UnityAction onPlayerLose;
+
+
     public enum PlayerState
     {
         TalkStart,
@@ -77,6 +82,7 @@ public class TimeToTalkScript : MonoBehaviour
         timeLeft = maxTime;
         timeCurrent = timeStart;
         secondsValueCurrent = 0;
+        
     }
 
     private void OnTriggerStay(Collider other)

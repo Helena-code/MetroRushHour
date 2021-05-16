@@ -71,6 +71,9 @@
     <Compile Include="Assets\Scripts\Lena\GameManager.cs" />
     <Compile Include="Assets\Scripts\Roma\TimeToTalkScript.cs" />
     <Compile Include="Assets\Scripts\Lena\TargetScript.cs" />
+    <Compile Include="Assets\UIMainMenu.cs" />
+    <Compile Include="Assets\GameSceneUIScript.cs" />
+    <Compile Include="Assets\SpawnPointsScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
