@@ -36,8 +36,20 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Lena\ColorScript.cs" />
+     <Compile Include="Assets\Scripts\Lena\TestPlayerScript.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+     <Compile Include="Assets\Scripts\Lena\UI\Settings.cs" />
+     <Compile Include="Assets\Scripts\Lena\UI\SoundsManager.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\Lena\UI\ClockScript.cs" />
+     <Compile Include="Assets\Scripts\Lena\UI\MenuContrl.cs" />
+     <Compile Include="Assets\Scripts\Lena\SimpleMoveScript.cs" />
+     <Compile Include="Assets\Scripts\Lena\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Lena\TargetScript.cs" />
+     <Compile Include="Assets\Scripts\Dann\PoliceMovement.cs" />
+     <Compile Include="Assets\Scripts\Dann\PoliceSpawner.cs" />
+     <Compile Include="Assets\Scripts\Dann\ColorChange.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Program Files (x86)/Unity Hub/Editor/2020.3.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -608,8 +620,14 @@
     <Reference Include="Unity.ShaderGraph.Editor">
         <HintPath>D:/Temp/Unity Projects/MetroRushHour/MetroRushHour/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>D:/Temp/Unity Projects/MetroRushHour/MetroRushHour/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>D:/Temp/Unity Projects/MetroRushHour/MetroRushHour/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>D:/Temp/Unity Projects/MetroRushHour/MetroRushHour/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
         <HintPath>D:/Temp/Unity Projects/MetroRushHour/MetroRushHour/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
