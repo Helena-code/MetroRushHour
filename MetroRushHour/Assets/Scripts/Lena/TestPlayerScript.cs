@@ -23,17 +23,12 @@ public class TestPlayerScript : MonoBehaviour
     public Text positiveTargetSumText;
     int positiveTargetSum;
 
-    public Slider currentSliderRob;
-    int dollarsSum;
-    public Text dollarsSumText;
-    ColorChange colorchange;
     private void Start()
     {
         rigidbodyPlayer = GetComponent<Rigidbody>();
         transformPlayer = GetComponent<Transform>();
         colliderPlayer = GetComponent<Collider>();
         animatorPlayer = GetComponentInChildren<Animator>();
-        colorchange = GetComponent<ColorChange>();
 
         //animatorPlayer.SetBool("Walk", false);
     }
@@ -50,24 +45,11 @@ public class TestPlayerScript : MonoBehaviour
             if (typeOfTarget == "targetPositive")
             {
                 // тут еще должно быть взаимодействие с самим таргетом - таймер ползунок
-                //positiveTargetSum = positiveTargetSum + 1;
-                //positiveTargetSumText.text += " " + positiveTargetSum.ToString();
-                if (currentSliderRob.value < 0.4f || currentSliderRob.value > 0.6f)
-                {
-                    Vector3 currentPos = transformPlayer.position;
-                    currentPos.x += 2f;
-                    transformPlayer.position = currentPos;
-                    return;
-                } else
-                {
-                    dollarsSum += 1;
-                    dollarsSumText.text += dollarsSum.ToString();
-                    colorchange.ChangeColor();
-                    return;
-                }
+                positiveTargetSum = positiveTargetSum + 1;
+                positiveTargetSumText.text += " " + positiveTargetSum.ToString();
             }
         }
-
+        
     }
     private void Moving()
     {
@@ -104,10 +86,9 @@ public class TestPlayerScript : MonoBehaviour
 
     }
 
-    public void TargetingOn(string type, Slider currentSl)
+    public void TargetingOn(string type)
     {
         typeOfTarget = type;
-        currentSliderRob = currentSl;
     }
     public void TargetingOff()
     {
