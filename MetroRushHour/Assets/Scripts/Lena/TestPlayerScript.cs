@@ -24,8 +24,8 @@ public class TestPlayerScript : MonoBehaviour
     int positiveTargetSum;
 
     public Slider currentSliderRob;
-    int dollarsSum;
-    public Text dollarsSumText;
+    //int dollarsSum;
+    //public Text dollarsSumText;
     ColorChange colorchange;
    
     private void Start()
@@ -50,7 +50,7 @@ public class TestPlayerScript : MonoBehaviour
         {
             if (typeOfTarget == "targetPositive")
             {
-                // тут еще должно быть взаимодействие с самим таргетом - таймер ползунок
+                
                 //positiveTargetSum = positiveTargetSum + 1;
                 //positiveTargetSumText.text += " " + positiveTargetSum.ToString();
                 if (currentSliderRob.value < 0.4f || currentSliderRob.value > 0.6f)
@@ -61,8 +61,9 @@ public class TestPlayerScript : MonoBehaviour
                     return;
                 } else
                 {
-                    dollarsSum += 1;
-                    dollarsSumText.text += dollarsSum.ToString();
+                    //Debug.Log("попала в зеленую полосу");
+                    //dollarsSum += 1;
+                    //dollarsSumText.text += dollarsSum.ToString();
                     colorchange.ChangeColor();
                     return;
                 }
@@ -107,6 +108,7 @@ public class TestPlayerScript : MonoBehaviour
 
     public void TargetingOn(string type, Slider currentSl)
     {
+        Debug.Log("метод TargetingOn");
         typeOfTarget = type;
         currentSliderRob = currentSl;
     }
