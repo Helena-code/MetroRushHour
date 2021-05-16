@@ -104,9 +104,10 @@ public class TestPlayerScript : MonoBehaviour
 
     }
 
-    public void TargetingOn(string type)
+    public void TargetingOn(string type, Slider currentSl)
     {
         typeOfTarget = type;
+        currentSliderRob = currentSl;
     }
     public void TargetingOff()
     {
