@@ -44,15 +44,15 @@
      <Compile Include="Assets\Scripts\Lena\UI\Settings.cs" />
      <Compile Include="Assets\Scripts\Lena\UI\SoundsManager.cs" />
      <Compile Include="Assets\Scripts\Dann\ColorChange.cs" />
+     <Compile Include="Assets\Scripts\Dann\PoliceDestroyer.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\Dann\ClockAnchor.cs" />
      <Compile Include="Assets\Scripts\Lena\UI\ClockScript.cs" />
+     <Compile Include="Assets\Scripts\Dann\ClockUI.cs" />
      <Compile Include="Assets\Scripts\Lena\UI\MenuContrl.cs" />
      <Compile Include="Assets\Scripts\Lena\SimpleMoveScript.cs" />
      <Compile Include="Assets\Scripts\Lena\GameManager.cs" />
      <Compile Include="Assets\Scripts\Lena\TargetScript.cs" />
-     <Compile Include="Assets\Scripts\Dann\ClockUI.cs" />
-     <Compile Include="Assets\Scripts\Dann\ClockAnchor.cs" />
-     <Compile Include="Assets\Scripts\Dann\PoliceDestroyer.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Program Files (x86)/Unity Hub/Editor/2020.3.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

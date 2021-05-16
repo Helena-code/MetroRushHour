@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ClockUI : MonoBehaviour
 {
     Image timer;
-    float timeAmount = 20;
+    public float timeAmount = 20;
     float time;
     Transform clockHandTransform;
     // Start is called before the first frame update

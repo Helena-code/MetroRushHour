@@ -9,6 +9,8 @@ public class PoliceMovement : MonoBehaviour
     Vector3 endPosition;
     bool playerCaught = false;
     bool playerInSight = false;
+    public float walkingSpeed = 2f;
+    public float chasingSpeed = 3f;
     public UnityAction onPlayerLose;
     void Start()
     {
@@ -29,7 +31,7 @@ public class PoliceMovement : MonoBehaviour
         }
         if (playerInSight)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, 3 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
             float distance = Vector3.Distance(player.position, transform.position);
             if (distance <= 1f)
             {
@@ -43,7 +45,7 @@ public class PoliceMovement : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPosition, 2 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, endPosition, walkingSpeed * Time.deltaTime);
         }
     }
     private void OnTriggerEnter(Collider other) 
