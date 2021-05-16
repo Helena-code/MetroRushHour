@@ -34,6 +34,7 @@ public class TargetScript : MonoBehaviour
         slInst.transform.SetParent(stPos);
         //slInst.transform.position = Vector3.up;
         slInst.GetComponent<Slider>().transform.localPosition = Vector3.up;
+        currentSlider = slInst.GetComponent<Slider>();
     }
 
     private void OnTriggerStay(Collider other)
