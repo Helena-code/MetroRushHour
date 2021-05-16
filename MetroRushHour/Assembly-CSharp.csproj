@@ -36,6 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
      <Compile Include="Assets\Scripts\Lena\ColorScript.cs" />
      <Compile Include="Assets\Scripts\Dann\PoliceSpawner.cs" />
      <Compile Include="Assets\Scripts\Dann\PoliceMovement.cs" />
@@ -53,6 +55,7 @@
      <Compile Include="Assets\Scripts\Lena\SimpleMoveScript.cs" />
      <Compile Include="Assets\Scripts\Lena\GameManager.cs" />
      <Compile Include="Assets\Scripts\Lena\TargetScript.cs" />
+>>>>>>> 56bc0f95758668729368c4ed3c428fbadcf62703
     <Reference Include="UnityEngine">
         <HintPath>D:/Program Files (x86)/Unity Hub/Editor/2020.3.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
