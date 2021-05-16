@@ -27,6 +27,7 @@ public class TestPlayerScript : MonoBehaviour
     int dollarsSum;
     public Text dollarsSumText;
     ColorChange colorchange;
+   
     private void Start()
     {
         rigidbodyPlayer = GetComponent<Rigidbody>();
