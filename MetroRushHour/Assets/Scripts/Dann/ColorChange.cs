@@ -6,6 +6,7 @@ public class ColorChange : MonoBehaviour
 {
     Color endColor;
     Color playerColor;
+    public GameObject skinPlayer;
     void Start()
     {
         //playerColor = GetComponent<MeshRenderer>().material.color;
@@ -20,6 +21,8 @@ public class ColorChange : MonoBehaviour
     }
    public void ChangeColor()
     {
-        GetComponent<MeshRenderer>().material.color = Color.Lerp(GetComponent<MeshRenderer>().material.color, endColor, Time.deltaTime / 2);
+        //GetComponentInChildren<MeshRenderer>().material.color = Color.Lerp(GetComponent<MeshRenderer>().material.color, endColor, Time.deltaTime / 2);
+        skinPlayer.GetComponent<MeshRenderer>().material.color = Color.Lerp(skinPlayer.GetComponent<MeshRenderer>().material.color, endColor, Time.deltaTime / 2);
+        
     }
 }
