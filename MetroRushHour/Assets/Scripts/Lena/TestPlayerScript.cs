@@ -26,7 +26,7 @@ public class TestPlayerScript : MonoBehaviour
     public Slider currentSliderRob;
     //int dollarsSum;
     //public Text dollarsSumText;
-    ColorChange colorchange;
+  public  ColorChange colorchange;
    
     private void Start()
     {
@@ -46,29 +46,51 @@ public class TestPlayerScript : MonoBehaviour
     {
         Moving();
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if (typeOfTarget == "targetPositive")
-            {
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    if (typeOfTarget == "targetPositive")
+        //    {
                 
-                //positiveTargetSum = positiveTargetSum + 1;
-                //positiveTargetSumText.text += " " + positiveTargetSum.ToString();
-                if (currentSliderRob.value < 0.4f || currentSliderRob.value > 0.6f)
-                {
-                    Vector3 currentPos = transformPlayer.position;
-                    currentPos.x += 2f;
-                    transformPlayer.position = currentPos;
-                    return;
-                } else
-                {
-                    //Debug.Log("попала в зеленую полосу");
-                    //dollarsSum += 1;
-                    //dollarsSumText.text += dollarsSum.ToString();
-                    colorchange.ChangeColor();
-                    return;
-                }
-            }
-        }
+        //        //positiveTargetSum = positiveTargetSum + 1;
+        //        //positiveTargetSumText.text += " " + positiveTargetSum.ToString();
+        //        if (currentSliderRob.value < 0.4f || currentSliderRob.value > 0.6f)
+        //        {
+        //            Vector3 currentPos = transformPlayer.position;
+        //            currentPos.x += 2f;
+        //            transformPlayer.position = currentPos;
+        //            return;
+        //        } else
+        //        {
+        //            //Debug.Log("попала в зеленую полосу");
+        //            //dollarsSum += 1;
+        //            //dollarsSumText.text += dollarsSum.ToString();
+        //            colorchange.ChangeColor();
+        //            return;
+        //        }
+        //    }
+            
+        //        if (typeOfTarget == "targetNegative")
+        //    {
+
+        //        //positiveTargetSum = positiveTargetSum + 1;
+        //        //positiveTargetSumText.text += " " + positiveTargetSum.ToString();
+        //        if (currentSliderRob.value < 0.4f || currentSliderRob.value > 0.6f)
+        //        {
+        //            Vector3 currentPos = transformPlayer.position;
+        //            currentPos.x += 2f;
+        //            transformPlayer.position = currentPos;
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //Debug.Log("попала в зеленую полосу");
+        //            //dollarsSum += 1;
+        //            //dollarsSumText.text += dollarsSum.ToString();
+        //            //colorchange.ChangeColor();
+        //            return;
+        //        }
+        //    }
+        //}
 
     }
     private void Moving()
@@ -117,4 +139,10 @@ public class TestPlayerScript : MonoBehaviour
         typeOfTarget = null;
     }
 
+    public void MoveRobUnluck()
+    {
+        Vector3 currentPos = transformPlayer.position;
+        currentPos.x += 2f;
+        transformPlayer.position = currentPos;
+    }
 }

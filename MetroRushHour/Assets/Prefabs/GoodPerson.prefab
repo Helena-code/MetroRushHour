@@ -256,7 +256,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 6}
+  m_Size: {x: 1.5, y: 1, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2309499499094449515
 MonoBehaviour:
@@ -271,4 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfTarget: 1
-  stPos: {fileID: 2309499498022861486}
+  slPos: {fileID: 2309499498022861486}
+  skin: {fileID: 2309499498803408125}
+  greyMat: {fileID: 2100000, guid: a63c0955caa151f448a87bc417ed627c, type: 2}
+  dollarText: {fileID: 0}
+  valueDollar: 5
