@@ -5,9 +5,15 @@ using UnityEngine;
 public class SlideManager : MonoBehaviour
 {
     public GameObject slideShowBeginning;
+    public GameObject slideShowCatch;
+    public GameObject slideShowEndGood;
+    public GameObject slideShowEndBad;
     private void Awake()
     {
         slideShowBeginning.SetActive(false);
+        slideShowCatch.SetActive(false);
+        slideShowEndGood.SetActive(false);
+        slideShowEndBad.SetActive(false);
     }
     private void Update()
     {
@@ -22,4 +28,17 @@ public class SlideManager : MonoBehaviour
     {
         slideShowBeginning.SetActive(true);
     }
+    public void StartSlideCatch()
+    {
+        slideShowCatch.SetActive(true);
+    }
+    public void StartSlideEndGood()
+    {
+        slideShowEndGood.SetActive(true);
+    }
+    public void StartSlideEndBad()
+    {
+        slideShowEndBad.SetActive(true);
+    }
+    
 }

@@ -74,9 +74,27 @@ public class TargetScript : MonoBehaviour
     {
         if (numTryToRob == 1)
         {
-            Invoke("ChangeColorRubLucky", 1f);
+            Invoke("ChangeColorRubLucky", 0f);
 
         }
+
+        //if (Input.GetKeyUp(KeyCode.Space))
+        //{
+        //    if (robStage == 0)
+        //    {
+        //        Invoke("StageRob1", 0.5f);
+        //        //StageRob1();
+        //        Debug.Log("нажат пробел в Target стадия 1");
+
+        //    }
+        //    if (robStage == 1)
+        //    {
+        //        Debug.Log("нажат пробел в Target стадия 2");
+        //        //Invoke("StageRob2(other)", 0.5f);
+        //        //StageRob2(other);
+        //    }
+
+        //}
 
     }
     private void OnTriggerStay(Collider other)
@@ -85,66 +103,88 @@ public class TargetScript : MonoBehaviour
         {
             //    other.GetComponent<TestPlayerScript>().TargetingOn(currentTarget, currentSlider);
             //}
-            if (robStage == 0)
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (robStage == 0)
                 {
-                    Debug.Log("нажат пробел в Target");
-                    //currentSlider.enabled = true;
-                    currentSlider.gameObject.SetActive(true);
-                    robStage = 1;
+                    Invoke("StageRob1", 0.2f);
+                    //StageRob1();
+                    Debug.Log("нажат пробел в Target стадия 1");
+
                 }
-            }
-            if (robStage == 1)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (robStage == 1)
                 {
-                    if (typeOfTarget == 1)
-                    {
-
-                        if (currentSlider.value < 0.3f || currentSlider.value > 0.7f)
-                        {
-                            other.GetComponent<TestPlayerScript>().MoveRobUnluck();
-                            Dollar.dollarSum -= valueDollarUnluck;
-                            dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
-                            return;
-                        }
-                        else
-                        {
-                            //Debug.Log("попала в зеленую полосу");
-
-                            other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
-                            numTryToRob = 1;
-                            Dollar.dollarSum += valueDollarGoodPerson;
-                            dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
-                            robStage = 2;
-                            return;
-                        }
-                    }
-
-                    if (typeOfTarget == 2)
-                    {
-
-                        if (currentSlider.value < 0.3f || currentSlider.value > 0.7f)
-                        {
-                            other.GetComponent<TestPlayerScript>().MoveRobUnluck();
-                            Dollar.dollarSum -= valueDollarUnluck;
-                            dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
-                            return;
-                        }
-                        else
-
-                        {
-                            //other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
-                            numTryToRob = 1;
-                            Dollar.dollarSum += valueDollarBadPerson;
-                            dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
-                            robStage = 2;
-                            return;
-                        }
-                    }
+                    Debug.Log("нажат пробел в Target стадия 2");
+                    //Invoke("StageRob2(other)", 0.5f);
+                    StageRob2(other);
                 }
+
             }
+
+
+
+
+            //    if (robStage == 0)
+            //{
+            //    if (Input.GetKeyUp(KeyCode.Space))
+            //    {
+            //        Debug.Log("нажат пробел в Target");
+            //        //currentSlider.enabled = true;
+            //        currentSlider.gameObject.SetActive(true);
+            //        robStage = 1;
+            //    }
+            //}
+            //if (robStage == 1)
+            //{
+            //    if (Input.GetKeyUp(KeyCode.Space))
+            //    {
+            //        if (typeOfTarget == 1)
+            //        {
+
+            //            if (currentSlider.value < 0.3f || currentSlider.value > 0.7f)
+            //            {
+            //                other.GetComponent<TestPlayerScript>().MoveRobUnluck();
+            //                Dollar.dollarSum -= valueDollarUnluck;
+            //                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+            //                return;
+            //            }
+            //            else
+            //            {
+            //                //Debug.Log("попала в зеленую полосу");
+
+            //                other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
+            //                numTryToRob = 1;
+            //                Dollar.dollarSum += valueDollarGoodPerson;
+            //                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+            //                robStage = 2;
+            //                return;
+            //            }
+            //        }
+
+            //        if (typeOfTarget == 2)
+            //        {
+
+            //            if (currentSlider.value < 0.3f || currentSlider.value > 0.7f)
+            //            {
+            //                other.GetComponent<TestPlayerScript>().MoveRobUnluck();
+            //                Dollar.dollarSum -= valueDollarUnluck;
+            //                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+            //                return;
+            //            }
+            //            else
+
+            //            {
+            //                //other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
+            //                numTryToRob = 1;
+            //                Dollar.dollarSum += valueDollarBadPerson;
+            //                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+            //                robStage = 2;
+            //                return;
+            //            }
+            //        }
+            //    }
+            //}
         }
     }
     private void OnTriggerExit(Collider other)
@@ -153,6 +193,7 @@ public class TargetScript : MonoBehaviour
         //{
         //    other.GetComponent<TestPlayerScript>().TargetingOff();
         //}
+        currentSlider.gameObject.SetActive(false);
     }
     public void ChangeColorRubLucky()
     {
@@ -161,5 +202,74 @@ public class TargetScript : MonoBehaviour
         currentSlider.gameObject.SetActive(false);
         Destroy(GetComponent<TargetScript>());
 
+    }
+
+    void StageRob1()
+    {
+        //Debug.Log("нажат пробел в Target стадия 1");
+        currentSlider.gameObject.SetActive(true);
+        robStage = 1;
+    }
+
+    void StageRob2(Collider player)
+    {
+        Collider other = player;
+
+        if (typeOfTarget == 1)
+        {
+
+            if (currentSlider.value < 0.25f || currentSlider.value > 0.5f)
+            {
+                other.GetComponent<TestPlayerScript>().MoveRobUnluck();
+                if ((Dollar.dollarSum - valueDollarUnluck) <= 0)
+                {
+                    Dollar.dollarSum = 0;
+                }
+                else { Dollar.dollarSum -= valueDollarUnluck; }
+
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                numTryToRob = 1;
+                return;
+            }
+            else
+            {
+                //Debug.Log("попала в зеленую полосу");
+
+                other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
+                numTryToRob = 1;
+                Dollar.dollarSum += valueDollarGoodPerson;
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                robStage = 2;
+                Debug.Log("успех ограбление хороший");
+                return;
+            }
+        }
+        if (typeOfTarget == 2)
+        {
+
+            if (currentSlider.value < 0.25f || currentSlider.value > 0.5f)
+            {
+                other.GetComponent<TestPlayerScript>().MoveRobUnluck();
+                if ((Dollar.dollarSum - valueDollarUnluck) <= 0)
+                {
+                    Dollar.dollarSum = 0;
+                }
+                else { Dollar.dollarSum -= valueDollarUnluck; }
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                numTryToRob = 1;
+                return;
+            }
+            else
+
+            {
+                //other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
+                numTryToRob = 1;
+                Dollar.dollarSum += valueDollarBadPerson;
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                robStage = 2;
+                Debug.Log("успех ограбление плохой");
+                return;
+            }
+        }
     }
 }
