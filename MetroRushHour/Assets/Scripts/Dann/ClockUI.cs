@@ -12,9 +12,9 @@ public class ClockUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = transform.Find("Timer").GetComponentInChildren<Image>();
+        timer = transform.Find("ClockTimer").GetComponentInChildren<Image>();
         time = timeAmount;
-        clockHandTransform = transform.Find("ClockArrow");
+        clockHandTransform = transform.Find("ClockHandMoving");
     }
 
     // Update is called once per frame
