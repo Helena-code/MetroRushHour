@@ -10,9 +10,14 @@ public class SimpleMoveScript : MonoBehaviour
     float coef = -1f;
     public Transform point3;
     Transform transformCrowd;
+    Animator anim;
+   public GameObject skin;
     void Start()
     {
         transformCrowd = GetComponent<Transform>();
+        //anim.GetComponentInChildren<Animator>();
+        //anim.SetBool("Walk", true);
+        skin.GetComponent<Animator>().SetBool("Walk", true);
     }
 
 
@@ -23,6 +28,7 @@ public class SimpleMoveScript : MonoBehaviour
         if (transformCrowd.position.x < point1 || transformCrowd.position.x > point2)
         {
             coef *= -1;
+            skin.transform.Rotate(new Vector3(0f, 180f, 0f));
         }
     }
 }

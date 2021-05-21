@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 14ad5df4e8ec008489e20cacf4cf2657
   - enabled: 1
-    path: Assets/Scenes/LocationScene.unity
-    guid: eaa67b8b47cf3a14c89e5cba6aa50f29
+    path: Assets/Scenes/LenaScene.unity
+    guid: 7489b22c43382554aafa495459a39c91
+  - enabled: 1
+    path: Assets/Scenes/CatchScene.unity
+    guid: 6869c9a794bee8f43b740b7af95b82fb
+  - enabled: 1
+    path: Assets/Scenes/BadEndScene.unity
+    guid: 004b2e272ca25c34ba9b2da3e5bfa8b3
+  - enabled: 1
+    path: Assets/Scenes/GoodEndScene.unity
+    guid: 9549c584c661de14da97f8ff1a2fa997
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -52,6 +52,20 @@ public class SlideShow : MonoBehaviour
         //}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //// онякедмхи юйрсюкэмши йнд
         currentTimeToChange += Time.deltaTime;
         if (Mathf.Abs(currentTime - timeToChange) < 0.05f)
         {
@@ -59,10 +73,10 @@ public class SlideShow : MonoBehaviour
         }
 
         currentTime += Time.deltaTime;
-        if (currentTime > timeToChange/2)
+        if (currentTime > timeToChange / 2)
         {
             currentImage.color = new Color(currentImage.color.r, currentImage.color.g, currentImage.color.b, currentImage.color.a - Time.deltaTime * speed);
-            
+
         }
         else
         {
@@ -71,6 +85,17 @@ public class SlideShow : MonoBehaviour
 
 
     }
+    //void NextImage()
+    //{
+    //    for (int i = 0; i < imagesScenes.Length; i++)
+    //    {
+    //        StartCoroutine(ThisImage());
+    //    }
+    //}
+    //IEnumerator ThisImage()
+    //{
+    //    yield return new WaitForSeconds(timeToChange);
+    //}
 }
 
 //////////////////////
