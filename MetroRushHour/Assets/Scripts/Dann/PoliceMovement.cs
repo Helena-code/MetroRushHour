@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 public class PoliceMovement : MonoBehaviour
@@ -14,10 +15,9 @@ public class PoliceMovement : MonoBehaviour
     public UnityAction onPlayerLose;
     void Start()
     {
-        endPosition = new Vector3(
-            -transform.position.x, 
-            transform.position.y, 
-            transform.position.z);
+        endPosition = new Vector3(-50f, transform.position.y, transform.position.z);
+        // -transform.position.x, 
+
     }
     void Update()
     {
@@ -36,6 +36,7 @@ public class PoliceMovement : MonoBehaviour
             if (distance <= 1f)
             {
                 playerCaught = true;
+                SceneManager.LoadScene(2); // ÐÎÌÊÀ ÂÀÍËÀÂ ÌÎËÎÄÅÖ!!!
                 if (onPlayerLose != null)
                 {
                     onPlayerLose.Invoke();

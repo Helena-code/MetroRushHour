@@ -368,8 +368,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 5.585595}
+  m_Center: {x: 0, y: 0, z: -1.6041207}
 --- !u!114 &2890425135550982839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   EndToTall: {fileID: 2890425134550475344}
   slider: {fileID: 2890425135557400811}
   timeCurrent: 0
-  maxTime: 1000
+  maxTime: 10
   timeLeft: 2
   player: {fileID: 0}
   testPlayerScript: {fileID: 0}
@@ -472,7 +472,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2890425135843389337}
   m_FillRect: {fileID: 2890425136605844669}
   m_HandleRect: {fileID: 2890425135843389335}

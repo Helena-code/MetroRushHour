@@ -29,6 +29,7 @@ public class TargetScript : MonoBehaviour
     public bool sliderLevel2;
     public bool sliderLevel3;
 
+    public GameObject skinPlayer;
 
     void Awake()
     {
@@ -110,12 +111,12 @@ public class TargetScript : MonoBehaviour
                 {
                     Invoke("StageRob1", 0.2f);
                     //StageRob1();
-                    Debug.Log("нажат пробел в Target стадия 1");
+                    //Debug.Log("нажат пробел в Target стадия 1");
 
                 }
                 if (robStage == 1)
                 {
-                    Debug.Log("нажат пробел в Target стадия 2");
+                    //Debug.Log("нажат пробел в Target стадия 2");
                     //Invoke("StageRob2(other)", 0.5f);
                     StageRob2(other);
                 }
@@ -197,7 +198,8 @@ public class TargetScript : MonoBehaviour
     }
     public void ChangeColorRubLucky()
     {
-        skin.GetComponent<MeshRenderer>().material = greyMat;
+        //skin.GetComponent<MeshRenderer>().material = greyMat;
+        skin.GetComponentInChildren<SkinnedMeshRenderer>().material = greyMat;
         //currentSlider.enabled = false;
         currentSlider.gameObject.SetActive(false);
         Destroy(GetComponent<TargetScript>());
@@ -208,13 +210,14 @@ public class TargetScript : MonoBehaviour
     {
         //Debug.Log("нажат пробел в Target стадия 1");
         currentSlider.gameObject.SetActive(true);
+        
         robStage = 1;
     }
 
     void StageRob2(Collider player)
     {
         Collider other = player;
-
+        skinPlayer.GetComponent<Animator>().SetBool("Steal", true);
         if (typeOfTarget == 1)
         {
 
@@ -227,7 +230,8 @@ public class TargetScript : MonoBehaviour
                 }
                 else { Dollar.dollarSum -= valueDollarUnluck; }
 
-                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString()+ " / " + Dollar.dollarFinal.ToString();
+                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 numTryToRob = 1;
                 return;
             }
@@ -238,9 +242,10 @@ public class TargetScript : MonoBehaviour
                 other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
                 numTryToRob = 1;
                 Dollar.dollarSum += valueDollarGoodPerson;
-                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
                 robStage = 2;
-                Debug.Log("успех ограбление хороший");
+               // Debug.Log("успех ограбление хороший");
+                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 return;
             }
         }
@@ -255,8 +260,9 @@ public class TargetScript : MonoBehaviour
                     Dollar.dollarSum = 0;
                 }
                 else { Dollar.dollarSum -= valueDollarUnluck; }
-                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
                 numTryToRob = 1;
+                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 return;
             }
             else
@@ -265,9 +271,10 @@ public class TargetScript : MonoBehaviour
                 //other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
                 numTryToRob = 1;
                 Dollar.dollarSum += valueDollarBadPerson;
-                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString();
+                dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
                 robStage = 2;
-                Debug.Log("успех ограбление плохой");
+               // Debug.Log("успех ограбление плохой");
+                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 return;
             }
         }

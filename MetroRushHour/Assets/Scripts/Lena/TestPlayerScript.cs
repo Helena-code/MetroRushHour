@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TestPlayerScript : MonoBehaviour
@@ -16,6 +17,7 @@ public class TestPlayerScript : MonoBehaviour
 
     Animator animatorPlayer;
     public Transform forwardPoint;
+    public Transform backPoint;
     public GameObject skin;
 
     Vector3 currentMovement;
@@ -26,8 +28,8 @@ public class TestPlayerScript : MonoBehaviour
     public Slider currentSliderRob;
     //int dollarsSum;
     //public Text dollarsSumText;
-  public  ColorChange colorchange;
-   
+    public ColorChange colorchange;
+
     private void Start()
     {
         rigidbodyPlayer = GetComponent<Rigidbody>();
@@ -46,11 +48,16 @@ public class TestPlayerScript : MonoBehaviour
     {
         Moving();
 
+        if (Dollar.dollarSum >= Dollar.dollarFinal)
+        {
+            SceneManager.LoadScene("GoodEndScene");
+        }
+
         //if (Input.GetKey(KeyCode.Space))
         //{
         //    if (typeOfTarget == "targetPositive")
         //    {
-                
+
         //        //positiveTargetSum = positiveTargetSum + 1;
         //        //positiveTargetSumText.text += " " + positiveTargetSum.ToString();
         //        if (currentSliderRob.value < 0.4f || currentSliderRob.value > 0.6f)
@@ -68,7 +75,7 @@ public class TestPlayerScript : MonoBehaviour
         //            return;
         //        }
         //    }
-            
+
         //        if (typeOfTarget == "targetNegative")
         //    {
 
@@ -125,6 +132,19 @@ public class TestPlayerScript : MonoBehaviour
         //}
         //else //animatorPlayer.SetBool("Walk", false);
 
+        if (horizontal != 0)
+        {
+            animatorPlayer.SetBool("Run", true);
+            if (horizontal < 0)
+            {
+                skin.transform.LookAt(backPoint);
+            }
+            else if (horizontal > 0)
+            {
+                skin.transform.LookAt(forwardPoint);
+            }
+        }
+        else animatorPlayer.SetBool("Run", false);
 
     }
 
