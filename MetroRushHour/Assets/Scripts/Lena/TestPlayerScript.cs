@@ -16,8 +16,9 @@ public class TestPlayerScript : MonoBehaviour
     public float pointBorderRight;
 
     Animator animatorPlayer;
-    public Transform forwardPoint;
-    public Transform backPoint;
+    public Transform rightPoint;
+    public Transform leftPoint;
+    public Transform frontPoint;
     public GameObject skin;
 
     Vector3 currentMovement;
@@ -134,14 +135,17 @@ public class TestPlayerScript : MonoBehaviour
 
         if (horizontal != 0)
         {
+            animatorPlayer.SetBool("Steal", false);
             animatorPlayer.SetBool("Run", true);
             if (horizontal < 0)
             {
-                skin.transform.LookAt(backPoint);
+                skin.transform.LookAt(leftPoint);
+                //skin.transform.Rotate(0,90,0);
             }
             else if (horizontal > 0)
             {
-                skin.transform.LookAt(forwardPoint);
+                skin.transform.LookAt(rightPoint);
+                //skin.transform.Rotate(0, -90, 0);
             }
         }
         else animatorPlayer.SetBool("Run", false);

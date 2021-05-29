@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
@@ -13,11 +14,13 @@ public class PoliceMovement : MonoBehaviour
     public float walkingSpeed = 2f;
     public float chasingSpeed = 3f;
     public UnityAction onPlayerLose;
+
+    public Image imageSign;
     void Start()
     {
         endPosition = new Vector3(-50f, transform.position.y, transform.position.z);
         // -transform.position.x, 
-
+        imageSign.enabled = false;
     }
     void Update()
     {
@@ -32,6 +35,7 @@ public class PoliceMovement : MonoBehaviour
         if (playerInSight)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
+            imageSign.enabled = true;
             float distance = Vector3.Distance(player.position, transform.position);
             if (distance <= 1f)
             {
@@ -46,6 +50,7 @@ public class PoliceMovement : MonoBehaviour
         }
         else
         {
+            imageSign.enabled = false; 
             transform.position = Vector3.MoveTowards(transform.position, endPosition, walkingSpeed * Time.deltaTime);
         }
     }
