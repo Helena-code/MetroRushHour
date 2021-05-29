@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoliceSpawner : MonoBehaviour
 {
  
-    public Vector3 spawningPosition = new Vector3(22f, 0f, 0f);
+    public float spawningPositionX = 22f;
     public GameObject player;
     public GameObject police;
     Vector3 playerPosition;
@@ -13,35 +13,22 @@ public class PoliceSpawner : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.P))
         {
-            if (police != null)
-            {
-                playerPosition = player.transform.position;
-                if (playerPosition.x > 0)
-                {
-                    SpawnPolice(-1);
-                }
-                else
-                {
-                    SpawnPolice(1);   
-                }
-            }
+            SpawnPolice();
         }
     }
-    void SpawnPolice(int direction)
+    void SpawnPolice()
     {
-        if(direction < 0)
+        if (!FindObjectOfType<PoliceMovement>())
         {
-            if (!FindObjectOfType<PoliceMovement>())
+            playerPosition = player.transform.position;
+            if (playerPosition.x > 0)
             {
-                Instantiate(police, new Vector3(-spawningPosition.x, spawningPosition.y, spawningPosition.z), Quaternion.Euler(0f, -180f, 0f));
+                Instantiate(police, new Vector3(-spawningPositionX, playerPosition.y, playerPosition.z), Quaternion.Euler(0f, -180f, 0f));
             }
-        }
-        else
-        {
-            if (!FindObjectOfType<PoliceMovement>())
+            else
             {
-                Instantiate(police, new Vector3(spawningPosition.x, spawningPosition.y, spawningPosition.z), Quaternion.identity);
+                Instantiate(police, new Vector3(spawningPositionX, playerPosition.y, playerPosition.z), Quaternion.identity);
             }
-        }
-    }               
+        }                
+    }              
 }
