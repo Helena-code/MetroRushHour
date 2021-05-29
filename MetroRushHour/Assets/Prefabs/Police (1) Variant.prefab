@@ -100,11 +100,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3642104252041592920, guid: 913b1645b793794479df12bdd0de12a9, type: 3}
       propertyPath: m_Center.z
-      value: -0.48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5973219184845504722, guid: 913b1645b793794479df12bdd0de12a9, type: 3}
       propertyPath: m_Name
-      value: Police (4)
+      value: Police (1) Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 816851040030891353, guid: 913b1645b793794479df12bdd0de12a9, type: 3}
