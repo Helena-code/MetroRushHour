@@ -15,33 +15,23 @@ public class PoliceMovement : MonoBehaviour
     public UnityAction onPlayerLose;
     void Start()
     {
-        endPosition = new Vector3(-50f, transform.position.y, transform.position.z);
-        // -transform.position.x, 
+        endPosition = new Vector3(-transform.position.x + 50, transform.position.y, transform.position.z); 
 
     }
     void Update()
     {
-        if (transform.position == endPosition)
-        {
-            
-        }
-        if (playerCaught)
-        {
-            // return;
-        }
         if (playerInSight)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
             float distance = Vector3.Distance(player.position, transform.position);
             if (distance <= 1f)
             {
-                playerCaught = true;
-                SceneManager.LoadScene(2); // ÐÎÌÊÀ ÂÀÍËÀÂ ÌÎËÎÄÅÖ!!!
+                //playerCaught = true;
+                SceneManager.LoadScene(2); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!!!
                 if (onPlayerLose != null)
                 {
                     onPlayerLose.Invoke();
                 }
-                // Debug.Log(playerCaught);
             }
         }
         else
