@@ -32,9 +32,11 @@ public class ScriptForChangeAlphaCanal : MonoBehaviour
             if (index < images.Length)
             {
                 GameObject ter = Instantiate(images[index]);
+                
                 ter.gameObject.SetActive(true);
                 ter.transform.SetParent(transform);
                 ter.transform.position = positions[index].transform.position;
+                ter.gameObject.transform.localScale = new Vector3(2, 2, 2);
                 yield return new WaitForSeconds(timer / 3);
                 
                 
@@ -42,7 +44,7 @@ public class ScriptForChangeAlphaCanal : MonoBehaviour
                 index++;
                 ter.gameObject.SetActive(false);
                 Destroy(ter);
-                Debug.Log("Destroy");
+                //Debug.Log("Destroy");
                 GO = true;
             }
         }
