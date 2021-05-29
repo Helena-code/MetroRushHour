@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject slideShowMan;
+    public float loadingTime;
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        //slideShowMan.GetComponent<SlideManager>().slideShowBeginning();
+        //SceneManager.LoadScene(1);
+        Invoke(nameof (Met), loadingTime);
     }
 
      public void ExitGame()
@@ -16,5 +20,8 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
     
-    
+    void Met()
+    {
+        SceneManager.LoadScene("LenaScene");
+    }
 }

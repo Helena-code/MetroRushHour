@@ -27,7 +27,7 @@ public class TimeToTalkScript : MonoBehaviour
 
     float timeStart = 6f;
     public float timeCurrent;
-    float secondsValue = 2f;
+    //float secondsValue = 2f;
     float secondsValueCurrent;
 
     public int maxTime;
