@@ -30,6 +30,7 @@ public class TargetScript : MonoBehaviour
     public bool sliderLevel3;
 
     public GameObject skinPlayer;
+    public AudioSource audioSTarget;
 
     void Awake()
     {
@@ -217,6 +218,7 @@ public class TargetScript : MonoBehaviour
     void StageRob2(Collider player)
     {
         Collider other = player;
+        //skinPlayer.GetComponent<Transform>().LookAt(skinPlayer.GetComponent<TestPlayerScript>().frontPoint);
         skinPlayer.GetComponent<Animator>().SetBool("Steal", true);
         if (typeOfTarget == 1)
         {
@@ -231,21 +233,21 @@ public class TargetScript : MonoBehaviour
                 else { Dollar.dollarSum -= valueDollarUnluck; }
 
                 dollarText.text = "Dollars: " + Dollar.dollarSum.ToString()+ " / " + Dollar.dollarFinal.ToString();
-                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
+                //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 numTryToRob = 1;
                 return;
             }
             else
             {
                 //Debug.Log("попала в зеленую полосу");
-
+                audioSTarget.Play(0);
                 other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
                 numTryToRob = 1;
                 Dollar.dollarSum += valueDollarGoodPerson;
                 dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
                 robStage = 2;
                // Debug.Log("успех ограбление хороший");
-                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
+                //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 return;
             }
         }
@@ -262,19 +264,20 @@ public class TargetScript : MonoBehaviour
                 else { Dollar.dollarSum -= valueDollarUnluck; }
                 dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
                 numTryToRob = 1;
-                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
+                //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 return;
             }
             else
 
             {
+                audioSTarget.Play(0);
                 //other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
                 numTryToRob = 1;
                 Dollar.dollarSum += valueDollarBadPerson;
                 dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
                 robStage = 2;
                // Debug.Log("успех ограбление плохой");
-                skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
+                //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 return;
             }
         }
