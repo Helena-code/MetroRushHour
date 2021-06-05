@@ -124,6 +124,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2309499499094449515, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
+      propertyPath: audioSTarget
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309499499094449515, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
       propertyPath: sliderLevel1
       value: 1
       objectReference: {fileID: 0}
@@ -143,6 +147,18 @@ PrefabInstance:
       propertyPath: valueDollarGoodPerson
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 2309499499094449515, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
+      propertyPath: audioClipsRob.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309499499094449515, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
+      propertyPath: audioClipsRob.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3447d0bfea82ce043b9416ffbe4671c9, type: 3}
+    - target: {fileID: 2309499499094449515, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
+      propertyPath: audioClipsRob.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 85daa4786be4b364786ae6dd42766554, type: 3}
     - target: {fileID: 2309499499094449516, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
       propertyPath: m_Name
       value: BadPerson (1)
@@ -159,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 72ac20e9197715e49ab5a1c2a0e225ea, type: 2}
+    - target: {fileID: 3752742007296186925, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7716398299853117416, guid: bc32ab2cbc0b4814baf99438d698354e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

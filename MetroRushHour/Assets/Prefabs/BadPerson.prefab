@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2309499497985974910}
-  m_LocalRotation: {x: -0, y: 0.8327589, z: -0, w: 0.5536358}
+  m_LocalRotation: {x: -0, y: -0.949758, z: -0, w: -0.31298536}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 884071760696234620}
   m_Father: {fileID: 2309499499094449513}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 112.766, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -216.478, z: 0}
 --- !u!1 &2309499498022861487
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +204,10 @@ MonoBehaviour:
   sliderLevel2: 0
   sliderLevel3: 0
   skinPlayer: {fileID: 0}
-  audioSTarget: {fileID: 3752742007296186925}
+  audioSTarget: {fileID: 0}
+  audioClipsRob:
+  - {fileID: 8300000, guid: 3447d0bfea82ce043b9416ffbe4671c9, type: 3}
+  - {fileID: 8300000, guid: 85daa4786be4b364786ae6dd42766554, type: 3}
 --- !u!82 &3752742007296186925
 AudioSource:
   m_ObjectHideFlags: 0

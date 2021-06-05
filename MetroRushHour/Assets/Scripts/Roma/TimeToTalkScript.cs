@@ -40,6 +40,10 @@ public class TimeToTalkScript : MonoBehaviour
 
     public bool usableSpace = true;
 
+    public AudioSource audioSourseCrowd;
+    public AudioClip audioClipCrowd;
+    bool playClip;
+
     public void StateMachine()
     {
         if (player !=null) {
@@ -66,6 +70,7 @@ public class TimeToTalkScript : MonoBehaviour
     }
     void backToend()
     {
+        //audioSourseCrowd.PlayOneShot(audioClipCrowd);
         player.transform.position = Vector3.MoveTowards(player.transform.position, EndToTall.position, 2 * Time.deltaTime);
         if (Vector3.Distance(player.transform.position, EndToTall.position) < 0.3f)
         {
@@ -82,7 +87,8 @@ public class TimeToTalkScript : MonoBehaviour
         timeLeft = maxTime;
         timeCurrent = timeStart;
         secondsValueCurrent = 0;
-        
+        audioSourseCrowd = GetComponent<AudioSource>();
+        playClip = true;
     }
 
     private void OnTriggerStay(Collider other)
@@ -119,7 +125,11 @@ public class TimeToTalkScript : MonoBehaviour
             
             
         }
-        else { 
+        else {
+            if (playClip)
+            {
+                PlayClipCrowd();
+            }
             playerState = PlayerState.TalkEnd;
         }
         
@@ -136,6 +146,11 @@ public class TimeToTalkScript : MonoBehaviour
         }
     }
 
+    void PlayClipCrowd()
+    {
+        audioSourseCrowd.PlayOneShot(audioClipCrowd);
+        playClip = false;
+    }
     IEnumerator timer()
     {
         yield return new WaitForSeconds(1);
