@@ -31,6 +31,7 @@ public class TargetScript : MonoBehaviour
 
     public GameObject skinPlayer;
     public AudioSource audioSTarget;
+    public AudioClip[] audioClipsRob;
 
     void Awake()
     {
@@ -69,7 +70,7 @@ public class TargetScript : MonoBehaviour
             currentSlider.gameObject.GetComponent<SliderRob>().speed = SliderSpeed.sliderSpeedL3;
         }
         currentSlider.gameObject.SetActive(false);
-
+        audioSTarget = GetComponent<AudioSource>();
 
     }
     private void Update()
@@ -233,6 +234,7 @@ public class TargetScript : MonoBehaviour
                 else { Dollar.dollarSum -= valueDollarUnluck; }
 
                 dollarText.text = "Dollars: " + Dollar.dollarSum.ToString()+ " / " + Dollar.dollarFinal.ToString();
+                audioSTarget.PlayOneShot(audioClipsRob[1]);
                 //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 numTryToRob = 1;
                 return;
@@ -240,7 +242,7 @@ public class TargetScript : MonoBehaviour
             else
             {
                 //Debug.Log("попала в зеленую полосу");
-                audioSTarget.Play(0);
+                audioSTarget.PlayOneShot(audioClipsRob[0]);
                 other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
                 numTryToRob = 1;
                 Dollar.dollarSum += valueDollarGoodPerson;
@@ -263,14 +265,16 @@ public class TargetScript : MonoBehaviour
                 }
                 else { Dollar.dollarSum -= valueDollarUnluck; }
                 dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
+                audioSTarget.PlayOneShot(audioClipsRob[1]);
                 numTryToRob = 1;
+                
                 //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
                 return;
             }
             else
 
             {
-                audioSTarget.Play(0);
+                audioSTarget.PlayOneShot(audioClipsRob[0]);
                 //other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
                 numTryToRob = 1;
                 Dollar.dollarSum += valueDollarBadPerson;
