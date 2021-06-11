@@ -1,20 +1,11 @@
 fileFormatVersion: 2
-guid: b20fdc2ef099d4a49b74838b348303d0
+guid: ff0bd621575a16a4092aa2c7970b534f
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 6568622915185634662
-    second: Main_char|Idle
-  - first:
-      74: 3287887857024594874
-    second: Main_char|Run
-  - first:
-      74: -712383863709175393
-    second: Main_char|Steal_true
-  - first:
-      74: 8332276866036165515
-    second: Main_char|Stealing
+      74: -4799524434163024911
+    second: Armature|walk
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -42,7 +33,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|walk
+      takeName: Armature|walk
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

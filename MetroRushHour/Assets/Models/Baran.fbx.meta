@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: b20fdc2ef099d4a49b74838b348303d0
+guid: df273ad6937847649b1d2c3d4f2357fa
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 6568622915185634662
-    second: Main_char|Idle
+      74: -8711928072004638702
+    second: Baran|Angry
   - first:
-      74: 3287887857024594874
-    second: Main_char|Run
+      74: 5043831214820314447
+    second: Baran|Idle
   - first:
-      74: -712383863709175393
-    second: Main_char|Steal_true
+      74: 9092500631557046502
+    second: Baran|Idle2
   - first:
-      74: 8332276866036165515
-    second: Main_char|Stealing
+      74: 4930686706460862311
+    second: Baran|walk
   externalObjects: {}
   materials:
     materialImportMode: 2
