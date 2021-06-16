@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2309499499094449513, guid: e023e03b9e86b64479cd63e8485ed4b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.27
       objectReference: {fileID: 0}
     - target: {fileID: 2309499499094449513, guid: e023e03b9e86b64479cd63e8485ed4b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.38000053
       objectReference: {fileID: 0}
     - target: {fileID: 2309499499094449513, guid: e023e03b9e86b64479cd63e8485ed4b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 8.81
       objectReference: {fileID: 0}
     - target: {fileID: 2309499499094449513, guid: e023e03b9e86b64479cd63e8485ed4b9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2309499499094449515, guid: e023e03b9e86b64479cd63e8485ed4b9, type: 3}
+      propertyPath: skinHead
+      value: 
+      objectReference: {fileID: 7021745948509051380}
     - target: {fileID: 2309499499094449516, guid: e023e03b9e86b64479cd63e8485ed4b9, type: 3}
       propertyPath: m_Name
       value: GoodPerson_new_variantRabbit
@@ -117,5 +121,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rabbit
       objectReference: {fileID: 0}
+    - target: {fileID: 8131067303120315442, guid: 638b8bda03e67814fb3c05004798ac7d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a79c4a89de660a74190e06bee764e3ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 638b8bda03e67814fb3c05004798ac7d, type: 3}
+--- !u!1 &7021745948509051380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4541454314279435659, guid: 638b8bda03e67814fb3c05004798ac7d, type: 3}
+  m_PrefabInstance: {fileID: 6806131044423689343}
+  m_PrefabAsset: {fileID: 0}

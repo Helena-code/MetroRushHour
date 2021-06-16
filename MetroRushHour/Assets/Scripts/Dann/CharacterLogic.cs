@@ -16,7 +16,8 @@ public class CharacterLogic : MonoBehaviour
     void Awake()
     {
         // robbedColor = new Color(255f, 255f, 255f, 100f);
-        Color characterColor = characterSkin.GetComponent<MeshRenderer>().material.color;
+        //Color characterColor = characterSkin.GetComponent<MeshRenderer>().material.color;
+        Color characterColor = characterSkin.GetComponent<SkinnedMeshRenderer>().material.color;
         StartCoroutine(Sample(characterColor));
     }
     private IEnumerator Sample(Color startingColor)
@@ -48,7 +49,8 @@ public class CharacterLogic : MonoBehaviour
     void Transparency(Color color, int modifier)
     {
         color.a = transparency;
-        characterSkin.GetComponent<MeshRenderer>().material.color = color;
+        //characterSkin.GetComponent<MeshRenderer>().material.color = color;
+        characterSkin.GetComponent<SkinnedMeshRenderer>().material.color = color;
         transparency += Time.deltaTime * modifier;
     }
     // void ToRobbedColor(Color color)
