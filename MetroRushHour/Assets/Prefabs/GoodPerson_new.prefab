@@ -65,7 +65,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.29}
+  m_AnchoredPosition: {x: 0, y: 1.6}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2309499498022861483
@@ -189,13 +189,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6411e235ad979864593cafdc4004fd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfTarget: 1
+  currentType: 0
   slPos: {fileID: 2309499498022861486}
-  skin: {fileID: 0}
+  skinHead: {fileID: 0}
   greyMat: {fileID: 2100000, guid: a63c0955caa151f448a87bc417ed627c, type: 2}
-  dollarText: {fileID: 0}
+  dollarManager: {fileID: 9060464317145870855, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
   robStage: 0
-  numTryToRob: 0
+  isRobbed: 0
+  valueDollarPerson: 0
   valueDollarGoodPerson: 9
   valueDollarBadPerson: 5
   valueDollarUnluck: 3

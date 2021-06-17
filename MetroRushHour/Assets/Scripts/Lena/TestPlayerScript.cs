@@ -163,10 +163,13 @@ public class TestPlayerScript : MonoBehaviour
         typeOfTarget = null;
     }
 
-    public void MoveRobUnluck()
+    public void MoveRobUnluckPlayer()
     {
+        // тут тоже надо вынесли плавное отодвигание - в апдейт
+        // включить анимацию шаг
         Vector3 currentPos = transformPlayer.position;
-        currentPos.x += 2f;
+        currentPos.x += 1.5f;
         transformPlayer.position = currentPos;
+        // выключить анимацию шаг
     }
 }

@@ -28,7 +28,7 @@ public class SimpleMoveScript : MonoBehaviour
         if (transformCrowd.position.x < point1 || transformCrowd.position.x > point2)
         {
             coef *= -1;
-            skin.transform.Rotate(new Vector3(0f, 180f, 0f));
+            skin.transform.Rotate(new Vector3(0f, 180f, 0f));      // убрать создание вектора , добавить переменную в поля
         }
     }
 }

@@ -17,8 +17,9 @@ public class TargetScript : MonoBehaviour
     Slider currentSlider;
     public GameObject skinHead;           // голова
     public Material greyMat;
-    public Text dollarText;
-
+    //public Text dollarText;
+    public GameObject dollarManager;
+    DollarCountManager dollarCountManagerScript;
     public int robStage = 0;
     // public int numTryToRob = 0;
     public bool isRobbed;
@@ -34,27 +35,23 @@ public class TargetScript : MonoBehaviour
     public GameObject skinPlayer;
     public AudioSource audioSTarget;
     public AudioClip[] audioClipsRob;
+    Animator animatorTarget;
+
+    bool turnAroundIn;
+    bool turnAroundOut;
+    float timerTurnIn = 0f;
+    float timerTurnOut = 0f;
 
     void Awake()
     {
-        //switch (typeOfTarget)
-        //{
-        //    case 1:
-        //        currentTarget = "targetPositive";
-        //        break;
-        //    case 2:
-        //        currentTarget = "targetNegative";
-        //        break;
-        //    case 3:
-        //        currentTarget = "targetCrowd";
-        //        break;
-        //}
 
+        dollarCountManagerScript = dollarManager.GetComponent<DollarCountManager>();
         // currentSlider = GetComponentInChildren<Slider>();
-
+        animatorTarget = GetComponentInChildren<Animator>();
         GameObject slInst = Instantiate(Resources.Load("SliderRob")) as GameObject;
         slInst.transform.SetParent(slPos);
-        //slInst.transform.position = Vector3.up;
+        //slInst.transform.position = Vector3.zero;
+        slInst.transform.localPosition = Vector3.zero;
         slInst.GetComponent<Slider>().transform.localPosition = Vector3.up;
         currentSlider = slInst.GetComponent<Slider>();
         //currentSlider.enabled = false;
@@ -89,10 +86,36 @@ public class TargetScript : MonoBehaviour
     }
     private void Update()
     {
-        if (isRobbed)
+        if (isRobbed)           // зачем это тут? убрать куда надо
         {
             Invoke("ChangeColorRubLucky", 0f);
 
+        }
+        if (turnAroundIn)
+        {
+            timerTurnIn += Time.deltaTime;
+            Vector3 _direction = (skinPlayer.transform.position - transform.position).normalized;
+            Quaternion _LookRotation = Quaternion.LookRotation(_direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _LookRotation, Time.deltaTime * 3f);
+            if (timerTurnIn > 1f)
+            {
+                turnAroundIn = false;
+                animatorTarget.SetBool("Rob", false);
+                turnAroundOut = true;
+            }
+        }
+        
+        
+        if (turnAroundOut)
+        {
+            timerTurnOut += Time.deltaTime;
+           // Vector3 _direction = (skinPlayer.transform.position - transform.position).normalized;
+            Quaternion _LookRotation = Quaternion.LookRotation(Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _LookRotation, Time.deltaTime * 2f);
+            if (timerTurnOut > 1.5f)
+            {
+                turnAroundOut = false;
+            }
         }
 
         //if (Input.GetKeyUp(KeyCode.Space))
@@ -228,6 +251,8 @@ public class TargetScript : MonoBehaviour
         
     }
 
+    
+
     void StageRob1()
     {
         //Debug.Log("нажат пробел в Target стадия 1");
@@ -241,23 +266,23 @@ public class TargetScript : MonoBehaviour
         Collider other = player;
         //skinPlayer.GetComponent<Transform>().LookAt(skinPlayer.GetComponent<TestPlayerScript>().frontPoint);
         skinPlayer.GetComponent<Animator>().SetBool("Steal", true);
-
-        if (currentSlider.value < 0.25f || currentSlider.value > 0.5f)
+        
+        if (currentSlider.value < 0.25f || currentSlider.value > 0.5f)          // неудачное ограбление
         {
-            other.GetComponent<TestPlayerScript>().MoveRobUnluck();
-            if ((Dollar.dollarSum - valueDollarUnluck) <= 0)
-            {
-                Dollar.dollarSum = 0;
-            }
-            else { Dollar.dollarSum -= valueDollarUnluck; }
-
-            dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
+            animatorTarget.SetBool("Rob", true);
+            
+            turnAroundIn = true;
+            other.GetComponent<TestPlayerScript>().MoveRobUnluckPlayer();
+            dollarCountManagerScript.DollarsAdd(valueDollarUnluck, false);
+            
             audioSTarget.PlayOneShot(audioClipsRob[1]);
             //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
+            
+            currentSlider.gameObject.SetActive(false);
             isRobbed = true;
             return;
         }
-        else
+        else                                                     // удачное ограбление
         {
             //Debug.Log("попала в зеленую полосу");
             audioSTarget.PlayOneShot(audioClipsRob[0]);
@@ -266,78 +291,14 @@ public class TargetScript : MonoBehaviour
                 other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
             }
             isRobbed = true;
-            Dollar.dollarSum += valueDollarPerson;
-            dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
+            dollarCountManagerScript.DollarsAdd(valueDollarPerson, true);
+           
+            currentSlider.gameObject.SetActive(false);
             robStage = 2;
             // Debug.Log("успех ограбление хороший");
             //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
             return;
         }
 
-
-        //if (typeOfTarget == 1)
-        //{
-
-        //    if (currentSlider.value < 0.25f || currentSlider.value > 0.5f)
-        //    {
-        //        other.GetComponent<TestPlayerScript>().MoveRobUnluck();
-        //        if ((Dollar.dollarSum - valueDollarUnluck) <= 0)
-        //        {
-        //            Dollar.dollarSum = 0;
-        //        }
-        //        else { Dollar.dollarSum -= valueDollarUnluck; }
-
-        //        dollarText.text = "Dollars: " + Dollar.dollarSum.ToString()+ " / " + Dollar.dollarFinal.ToString();
-        //        audioSTarget.PlayOneShot(audioClipsRob[1]);
-        //        //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
-        //        isRobbed = true;
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        //Debug.Log("попала в зеленую полосу");
-        //        audioSTarget.PlayOneShot(audioClipsRob[0]);
-        //        other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
-        //        isRobbed = true;
-        //        Dollar.dollarSum += valueDollarGoodPerson;
-        //        dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
-        //        robStage = 2;
-        //       // Debug.Log("успех ограбление хороший");
-        //        //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
-        //        return;
-        //    }
-        //}
-        //if (typeOfTarget == 2)
-        //{
-
-        //    if (currentSlider.value < 0.25f || currentSlider.value > 0.5f)
-        //    {
-        //        other.GetComponent<TestPlayerScript>().MoveRobUnluck();
-        //        if ((Dollar.dollarSum - valueDollarUnluck) <= 0)
-        //        {
-        //            Dollar.dollarSum = 0;
-        //        }
-        //        else { Dollar.dollarSum -= valueDollarUnluck; }
-        //        dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
-        //        audioSTarget.PlayOneShot(audioClipsRob[1]);
-        //        isRobbed = true;
-
-        //        //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
-        //        return;
-        //    }
-        //    else
-
-        //    {
-        //        audioSTarget.PlayOneShot(audioClipsRob[0]);
-        //        //other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
-        //        isRobbed = true;
-        //        Dollar.dollarSum += valueDollarBadPerson;
-        //        dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
-        //        robStage = 2;
-        //       // Debug.Log("успех ограбление плохой");
-        //        //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
-        //        return;
-        //    }
-        //}
     }
 }
