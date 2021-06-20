@@ -30,5 +30,6 @@ public class SimpleMoveScript : MonoBehaviour
             coef *= -1;
             skin.transform.Rotate(new Vector3(0f, 180f, 0f));      // убрать создание вектора , добавить переменную в поля
         }
+        
     }
 }

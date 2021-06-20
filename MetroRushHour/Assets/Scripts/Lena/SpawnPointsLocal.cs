@@ -69,26 +69,26 @@ public class SpawnPointsLocal : MonoBehaviour
     }
    public void CreateTarget()                                                           //  метод создания префаба
     {
-        Debug.Log("вызван создание префаба из спавн пойнта");
-        currentType = spManager.AskTypeOfNew();           // запросить тип нового объекта у менеджера
-        switch (currentType)                       //- выбрать рандомное число от 0 до длины списка префабов
+        //Debug.Log("вызван создание префаба из спавн пойнта");
+        currentType = spManager.AskTypeOfNew();                 // запросить тип нового объекта у менеджера
+        switch (currentType)                                    //- выбрать рандомное число от 0 до длины списка префабов
         {
             case Types.typeOfTarget.green:
                 randForCreate = Random.Range(0, spManager.PrefabsTargetsGreen.Length);
                 currentTarget = Instantiate(spManager.PrefabsTargetsGreen[randForCreate]);
                 spManager.SummAllTypesofTargets(Types.typeOfTarget.green, true);
-                Debug.Log("вызван случай зеленый");
+                //Debug.Log("вызван случай зеленый");
                 break;
             case Types.typeOfTarget.red:
                 randForCreate = Random.Range(0, spManager.PrefabsTargetsRed.Length);
                 currentTarget = Instantiate(spManager.PrefabsTargetsRed[randForCreate]);
                 spManager.SummAllTypesofTargets(Types.typeOfTarget.red, true);
-                Debug.Log("вызван случай красный");
+                //Debug.Log("вызван случай красный");
                 break;
             case Types.typeOfTarget.yellow:
                 randForCreate = Random.Range(0, spManager.PrefabsTargetsYellow.Length);
                 currentTarget = Instantiate(spManager.PrefabsTargetsYellow[randForCreate]);
-                Debug.Log("вызван случай желтый");
+                //Debug.Log("вызван случай желтый");
                 spManager.SummAllTypesofTargets(Types.typeOfTarget.yellow, true);
                 break;
                 //case Types.typeOfTarget.green:
