@@ -12,6 +12,7 @@ public class SpawnPointsManager : MonoBehaviour
     public GameObject[] PrefabsTargetsYellow;            // 2 толпы
 
     public float timeToSpawn = 1.9f;                    //  время между запуском всех точек на сцене 
+    public float timeToDestroy = 0.1f;                    //  время между запуском всех точек на сцене 
 
     int countGreen;
     int countRed;
@@ -56,7 +57,7 @@ public class SpawnPointsManager : MonoBehaviour
         for (int i = 0; i < testmas1.Length; i++)
         {
             SpawnPointsAll[testmas1[i]].GetComponent<SpawnPointsLocal>().DestroyTarget();
-            yield return new WaitForSeconds(timeToSpawn);
+            yield return new WaitForSeconds(timeToDestroy);
         }
     }
 
@@ -139,17 +140,27 @@ public class SpawnPointsManager : MonoBehaviour
                 return Types.typeOfTarget.green;
 
             }
+            
             else
             {
-                if ((countGreen / (countGreen + countRed) * 100) < 50)          //посчитать процент зеленых и красных
-                {                                                               //если % зеленых меньше 70 отправить рандомного зеленого 
+                if (countRed == 0)
+                {
                     //SummAllTypesofTargets(Types.typeOfTarget.green, true);
-                    return Types.typeOfTarget.green;
+                    return Types.typeOfTarget.red;
+
                 }
                 else
                 {
-                    //SummAllTypesofTargets(Types.typeOfTarget.red, true);
-                    return Types.typeOfTarget.red;                             //иначе отправить рандомного красного
+                    if ((countGreen / (countGreen + countRed) * 100) < 50)          //посчитать процент зеленых и красных
+                    {                                                               //если % зеленых меньше 70 отправить рандомного зеленого 
+                                                                                    //SummAllTypesofTargets(Types.typeOfTarget.green, true);
+                        return Types.typeOfTarget.green;
+                    }
+                    else
+                    {
+                        //SummAllTypesofTargets(Types.typeOfTarget.red, true);
+                        return Types.typeOfTarget.red;                             //иначе отправить рандомного красного
+                    }
                 }
             }
         }

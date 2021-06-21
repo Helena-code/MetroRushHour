@@ -49,10 +49,11 @@ public class TestPlayerScript : MonoBehaviour
     {
         Moving();
 
-        if (Dollar.dollarSum >= Dollar.dollarFinal)
-        {
-            SceneManager.LoadScene("GoodEndScene");
-        }
+        // перенесено в долларменеджер
+        //if (Dollar.dollarSum >= Dollar.dollarFinal)
+        //{
+        //    SceneManager.LoadScene("GoodEndScene");
+        //}
 
         //if (Input.GetKey(KeyCode.Space))
         //{
@@ -152,13 +153,13 @@ public class TestPlayerScript : MonoBehaviour
 
     }
 
-    public void TargetingOn(string type, Slider currentSl)
+    public void TargetingOn(string type, Slider currentSl)            // ???? что это?? удалить
     {
         Debug.Log("метод TargetingOn");
         typeOfTarget = type;
         currentSliderRob = currentSl;
     }
-    public void TargetingOff()
+    public void TargetingOff()                     // ???? что это?? удалить
     {
         typeOfTarget = null;
     }
@@ -171,5 +172,10 @@ public class TestPlayerScript : MonoBehaviour
         currentPos.x += 1.5f;
         transformPlayer.position = currentPos;
         // выключить анимацию шаг
+    }
+
+    public void LookAtTarget(Vector3 targetPos)
+    {
+        skin.transform.LookAt(targetPos);
     }
 }

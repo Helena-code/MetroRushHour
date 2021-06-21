@@ -11,7 +11,8 @@ public class TrainScript : MonoBehaviour
     public float speedStart;
     public float stopCoeff;
     public float timerStay;
-    public float timerForAudioStart;
+    public float AudioSynchStart;
+    public float AudioSynchEnd;
     public Transform startPoint;
     public AudioClip startTrainSound;
     public AudioClip endTrainSound;
@@ -19,7 +20,7 @@ public class TrainScript : MonoBehaviour
 
     Transform trTrain;
 
-    float timerForAudioCurrent;
+    float timerForAudioSynch;
     float timerStayCurrent;
 
     bool destroyT;
@@ -35,9 +36,11 @@ public class TrainScript : MonoBehaviour
         trTrain = GetComponent<Transform>();
         trTrain.position = startPoint.position;
         currentSpeed = speedStart;
-        timerForAudioCurrent = 0f;
+        timerForAudioSynch = 0f;
+        timerStayCurrent = 0f;
         isOnStation = false;
-        //destroyT = true;
+        destroyT = true;
+        playS = true;
         arrivalAtStation = true;
         departureFromStation = false;
     }
@@ -50,19 +53,39 @@ public class TrainScript : MonoBehaviour
     {
         if (!isOnStation)
         {
-            timerForAudioCurrent += Time.fixedDeltaTime;
-            if (timerForAudioCurrent > timerForAudioStart)
+            timerForAudioSynch += Time.fixedDeltaTime;
+
+            if (arrivalAtStation)
             {
-                if (arrivalAtStation)
+                if (timerForAudioSynch > AudioSynchStart)
                 {
                     currentSpeed -= stopCoeff;
+                    trTrain.Translate(Vector3.right * (currentSpeed) * Time.fixedDeltaTime);
                 }
-                else if (departureFromStation)
-                {
-                    currentSpeed += stopCoeff;
-                }
-                trTrain.Translate(Vector3.right * (currentSpeed) * Time.fixedDeltaTime);
             }
+            else if (departureFromStation)
+            {
+                if (timerForAudioSynch > AudioSynchEnd)
+                {
+                    currentSpeed += stopCoeff*0.5f;
+                    trTrain.Translate(Vector3.right * (currentSpeed) * Time.fixedDeltaTime);
+                }
+            }
+
+
+
+            //if (timerForAudioSynch > AudioSynchStart)
+            //{
+            //    if (arrivalAtStation)
+            //    {
+            //        currentSpeed -= stopCoeff;
+            //    }
+            //    else if (departureFromStation)
+            //    {
+            //        currentSpeed += stopCoeff;
+            //    }
+            //    trTrain.Translate(Vector3.right * (currentSpeed) * Time.fixedDeltaTime);
+            //}
         }
     }
 
@@ -100,12 +123,11 @@ public class TrainScript : MonoBehaviour
         if (isOnStation)
         {
             timerStayCurrent += Time.deltaTime;                            // включить таймер стоянки
-            
 
-            if (destroyT)
-            {
-                DestroyTargets();
-            }
+            //if (destroyT)
+            //{
+            //    Invoke("DestroyTargets", 2f);
+            //}
 
             if (timerStayCurrent > timerStay)                                 // когда таймер стоянки закончится
             {
@@ -114,9 +136,14 @@ public class TrainScript : MonoBehaviour
                 {
                     PlaySoundLeaveStation();
                 }
-                timerForAudioCurrent = 0f;
+                if (destroyT)
+                {
+                    DestroyTargets();
+                }
+                timerForAudioSynch = 0f;
+                timerStayCurrent = 0f;
                 isOnStation = false;
-                
+
             }
         }
         // стартовать таймер для подъезжания - нужен видимо отдельный метод
@@ -143,6 +170,7 @@ public class TrainScript : MonoBehaviour
 
     void DestroyTargets()
     {
+        //Debug.Log("Запуск дестроя таргетов из поезда");
         StartCoroutine(spManager.DestroyTargets());                   // отправить запрос в метод менеджера спавнов о запуске дестроя точек поочередно
         destroyT = false;
     }

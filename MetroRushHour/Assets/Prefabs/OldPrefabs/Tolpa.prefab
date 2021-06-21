@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 2890425135550982834}
   - component: {fileID: 2890425135550982835}
   - component: {fileID: 2890425135550982839}
+  - component: {fileID: -6127984961803731909}
   m_Layer: 0
   m_Name: Tolpa
   m_TagString: Untagged
@@ -382,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f299f1b6b85b6439e6dff0d4bcff01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentType: 2
   playerState: 1
   time: 0
   GoToTalk: {fileID: 2890425134629627783}
@@ -394,6 +396,20 @@ MonoBehaviour:
   testPlayerScript: {fileID: 0}
   distance: 1.67
   usableSpace: 1
+  audioSourseCrowd: {fileID: 0}
+  audioClipCrowd: {fileID: 0}
+--- !u!114 &-6127984961803731909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2890425135550982832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df237762e280a19449f56afeaa9beec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2890425135557400808
 GameObject:
   m_ObjectHideFlags: 0

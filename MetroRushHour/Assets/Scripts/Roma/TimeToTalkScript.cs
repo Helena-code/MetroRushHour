@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimeToTalkScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Types.typeOfTarget currentType;
 
     public UnityAction onPlayerLose;
 
@@ -157,4 +158,11 @@ public class TimeToTalkScript : MonoBehaviour
         timeLeft = timeLeft - 1* Time.deltaTime;
         slider.value = timeLeft;
     }
+
+    public void DestroyTarget()
+    {
+        //Destroy(GetComponent<TimeToTalkScript>());
+        Destroy(this);
+    }
+
 }

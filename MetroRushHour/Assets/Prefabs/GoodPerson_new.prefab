@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 2309499499094449514}
   - component: {fileID: 2309499499094449515}
   - component: {fileID: 2800493730104032619}
+  - component: {fileID: -2921310078802778738}
   m_Layer: 0
   m_Name: GoodPerson_new
   m_TagString: Untagged
@@ -203,7 +204,7 @@ MonoBehaviour:
   sliderLevel1: 1
   sliderLevel2: 0
   sliderLevel3: 0
-  skinPlayer: {fileID: 0}
+  skinPlayer: {fileID: 1903168264607915524, guid: 6e4e2a0a27427d7489f839af4e3a1709, type: 3}
   audioSTarget: {fileID: 0}
   audioClipsRob:
   - {fileID: 8300000, guid: 3447d0bfea82ce043b9416ffbe4671c9, type: 3}
@@ -304,3 +305,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2921310078802778738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309499499094449516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df237762e280a19449f56afeaa9beec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
