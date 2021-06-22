@@ -155,10 +155,22 @@ public class TrainScript : MonoBehaviour
         // когда поезд дошел до определенной границы по х
         // переместить его в начальную точку - можно повесить коллаидер и чекать, что поезд въехал в него
         // выключить всю скорость и все остальные переменные на фолс
-        if (other.GetComponent<BorderForTrain>() != null)
+        if (other.gameObject.GetComponent<BorderForTrain>() != null)
         {
+            Debug.Log("обнаружена граница для поезда");
             transform.position = startPoint.position;
             currentSpeed = 0f;
+            //GetComponent<TrainHelper>().
+            audioSourseTrain.PlayOneShot(startTrainSound);
+            timerForAudioSynch = 0f;
+            timerStayCurrent = 0f;
+            isOnStation = false;
+            destroyT = true;
+            playS = true;
+            arrivalAtStation = true;
+            departureFromStation = false;
+            currentSpeed = speedStart;
+            StartCoroutine(spManager.CreateTargets());
         }
     }
 

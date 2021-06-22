@@ -6,25 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class DollarCountManager : MonoBehaviour
 {
+    //public Transform textPos;
+    //public Text textPrefab;
+    public int DollarsToWin;
     public Text dollarText;
     int addingTemp = 0;
 
-    public  int dollarSum;
-    public  int dollarFinal;
+    // public  int dollarSum;
+    //public  int dollarFinal;
 
     private void Awake()
     {
-       // dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
-       // dollarText.text = "Dollars: " + dollarSum.ToString() + " / " + dollarFinal.ToString();
-        dollarText.text = "Dollars белеберда ";
+        //dollarText = Instantiate(textPrefab, textPos) as Text;
+        //dollarText = Instantiate(new Text(), textPos) as Text;
+        // dollarText = GUI.TextField
+        //dollarText.transform.SetParent(GetComponent<Canvas>().transform);
+        //dollarText.transform.position = textPos.position;
+        //dollarText.transform.localScale = Vector3.one;
+        //dollarText.gameObject.SetActive(true);
+        // dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
+        // dollarText.text = "Dollars: " + dollarSum.ToString() + " / " + dollarFinal.ToString();
+        //dollarText.text = "Dollars белеберда ";
+        // dollarSum = 0;
+        Dollar.dollarSum = 0;
+        Dollar.dollarFinal = DollarsToWin;
+        dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
     }
     private void Update()
     {
-        dollarText.text = "Dollars: " + dollarSum.ToString() + " / ";
+        //dollarText.text = "Dollars: " + dollarSum.ToString() + " / ";
     }
     public void DollarsAdd(int dollars, bool add)
     {
-        Debug.Log("вызов добавления долларов");
+       // Debug.Log("вызов добавления долларов");
         if (add)
         {
             addingTemp = +1;
@@ -37,12 +51,12 @@ public class DollarCountManager : MonoBehaviour
         //}
         //else
         //{
-            dollarSum += dollars * addingTemp;
+        //dollarSum += dollars * addingTemp;
         //}
-        Debug.Log("Dollar.dollarSum  "+ dollarSum);
-        dollarText.text = "Dollars: " + dollarSum.ToString() + " / "; //+ Dollar.dollarFinal.ToString();
-        Debug.Log("строка за обновлением  ");
-        Debug.Log("якобы обновленная dollarText.text  " + dollarText.text);
+        //Debug.Log("Dollar.dollarSum  "+ dollarSum);
+        //dollarText.text = "Dollars: " + dollarSum.ToString() + " / "; //+ Dollar.dollarFinal.ToString();
+        //Debug.Log("строка за обновлением  ");
+        //Debug.Log("якобы обновленная dollarText.text  " + dollarText.text);
 
         //if (dollarSum >= dollarFinal)
         //{
@@ -50,22 +64,22 @@ public class DollarCountManager : MonoBehaviour
         //}
 
 
-        //if ((Dollar.dollarSum + dollars * addingTemp) <= 0)
-        //{
-        //    Dollar.dollarSum = 0;
-        //}
-        //else
-        //{
-        //    Dollar.dollarSum += dollars * addingTemp;
-        //}
-        //// Debug.Log("Dollar.dollarSum  "+ Dollar.dollarSum);
-        //dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / "; //+ Dollar.dollarFinal.ToString();
+        if ((Dollar.dollarSum + dollars * addingTemp) <= 0)
+        {
+            Dollar.dollarSum = 0;
+        }
+        else
+        {
+            Dollar.dollarSum += dollars * addingTemp;
+        }
+        // Debug.Log("Dollar.dollarSum  "+ Dollar.dollarSum);
+        dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / "+ Dollar.dollarFinal.ToString();
 
 
-        //if (Dollar.dollarSum >= Dollar.dollarFinal)
-        //{
-        //    Invoke("StartFinalScene", 1f);
-        //}
+        if (Dollar.dollarSum >= Dollar.dollarFinal)
+        {
+            Invoke("StartFinalScene", 1f);
+        }
 
     }
 

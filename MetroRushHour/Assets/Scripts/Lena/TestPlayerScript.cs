@@ -176,6 +176,25 @@ public class TestPlayerScript : MonoBehaviour
 
     public void LookAtTarget(Vector3 targetPos)
     {
-        skin.transform.LookAt(targetPos);
+        //Debug.Log("вызов LookAt у игрока");
+       skin.transform.LookAt(targetPos,Vector3.up);
+       // skin.transform.LookAt(targetPos);
+       // skin.transform.LookAt(new Vector3 (0,0,targetPos.z));
+       // skin.transform.LookAt(transform.forward);
+       // skin.transform.LookAt(Vector3.forward);
+    }
+
+    public void StopAnimPlayer(bool isRobbed)
+    {
+        if (isRobbed)
+        {
+            Invoke("StopAnim", 0.5f);
+            //animatorPlayer.SetBool("StealYes", false);
+        }
+    }
+
+    public void StopAnim()
+    {
+        animatorPlayer.SetBool("StealYes", false);
     }
 }

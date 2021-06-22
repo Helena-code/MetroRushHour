@@ -8,11 +8,15 @@ public class TrainHelper : MonoBehaviour
     public float timeToSwitchTrain;
     void Start()
     {
-        Invoke("SwitchTrain", timeToSwitchTrain);
+        Invoke("SwitchOnTrain", timeToSwitchTrain);
     }
 
-    void SwitchTrain()
+   public void SwitchOnTrain()
     {
         train.SetActive(true);
+    }
+   public void SwitchOffTrain()
+    {
+        train.SetActive(false);
     }
 }

@@ -23,7 +23,9 @@ public class ColorChange : MonoBehaviour
    public void ChangeColor()
     {
         //GetComponentInChildren<MeshRenderer>().material.color = Color.Lerp(GetComponent<MeshRenderer>().material.color, endColor, Time.deltaTime / 2);
-        skinPlayer.GetComponent<SkinnedMeshRenderer>().material.color = Color.Lerp(skinPlayer.GetComponent<SkinnedMeshRenderer>().material.color, endColor, Time.deltaTime / 2);
+      //  skinPlayer.GetComponent<SkinnedMeshRenderer>().material.color = Color.Lerp(skinPlayer.GetComponent<SkinnedMeshRenderer>().material.color, endColor, Time.deltaTime / 2);
+        skinPlayer.GetComponent<SkinnedMeshRenderer>().material.color = Color.Lerp(skinPlayer.GetComponent<SkinnedMeshRenderer>().material.color, endColor, Time.deltaTime );
+        
         
     }
 }

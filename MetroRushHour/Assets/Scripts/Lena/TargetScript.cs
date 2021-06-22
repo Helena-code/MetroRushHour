@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TargetScript : MonoBehaviour
 {
-   // public int typeOfTarget;
+    // public int typeOfTarget;
     public Types.typeOfTarget currentType;
     // string currentTarget;
 
@@ -41,11 +41,12 @@ public class TargetScript : MonoBehaviour
     bool turnAroundOut;
     float timerTurnIn = 0f;
     float timerTurnOut = 0f;
-    Vector3 targetPos;
+    public Vector3 targetPos;
 
     void Awake()
     {
-        targetPos = transform.position;
+        // targetPos =transform.position;
+        dollarManager = Camera.main.gameObject;
         dollarCountManagerScript = dollarManager.GetComponent<DollarCountManager>();
         // currentSlider = GetComponentInChildren<Slider>();
         animatorTarget = GetComponentInChildren<Animator>();
@@ -105,12 +106,12 @@ public class TargetScript : MonoBehaviour
                 turnAroundOut = true;
             }
         }
-        
-        
+
+
         if (turnAroundOut)
         {
             timerTurnOut += Time.deltaTime;
-           // Vector3 _direction = (skinPlayer.transform.position - transform.position).normalized;
+            // Vector3 _direction = (skinPlayer.transform.position - transform.position).normalized;
             Quaternion _LookRotation = Quaternion.LookRotation(Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, _LookRotation, Time.deltaTime * 2f);
             if (timerTurnOut > 1.5f)
@@ -149,17 +150,22 @@ public class TargetScript : MonoBehaviour
             {
                 if (robStage == 0)
                 {
-                   Invoke("StageRob1", 0.2f);
+                    Invoke("StageRob1", 0.2f);
                     //StageRob1(other);
                     //Debug.Log("нажат пробел в Target стадия 1");
-                   
-                    other.gameObject.GetComponent<TestPlayerScript>().LookAtTarget(targetPos);
+                    // targetPos = transform.position;
+                    //skinPlayer.GetComponentInChildren<Animator>().SetBool("Steal", true);
+
+                    other.gameObject.GetComponent<TestPlayerScript>().LookAtTarget(transform.position);
+                    other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", true);
+                    // return;
                 }
                 if (robStage == 1)
                 {
                     //Debug.Log("нажат пробел в Target стадия 2");
                     //Invoke("StageRob2(other)", 0.5f);
                     StageRob2(other);
+                    // return;
                 }
 
             }
@@ -251,43 +257,56 @@ public class TargetScript : MonoBehaviour
     {
         //Destroy(GetComponent<TargetScript>());
         Destroy(this);
-        
+
     }
 
-    
+
 
     void StageRob1()
     {
         //Debug.Log("нажат пробел в Target стадия 1");
         currentSlider.gameObject.SetActive(true);
-        
-        // skinPlayer.GetComponent<Animator>().SetBool("Steal", true); ?????
+
+        //skinPlayer.GetComponentInChildren<Animator>().SetBool("Steal", true);
+        //if (skinPlayer.GetComponentInChildren<Animator>() != null)
+        //{
+        //    Debug.Log("аниматор игрока найден");
+        //}
         robStage = 1;
     }
 
     void StageRob2(Collider player)
     {
         Collider other = player;
-       // other.gameObject.GetComponent<TestPlayerScript>().LookAtTarget(targetPos);
+        // other.gameObject.GetComponent<TestPlayerScript>().LookAtTarget(targetPos);
 
         //skinPlayer.GetComponent<Transform>().LookAt(skinPlayer.GetComponent<TestPlayerScript>().frontPoint);
         //skinPlayer.GetComponentInChildren<Animator>().SetBool("Steal", true);
-        other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", true);
+
+        //other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", true);
+
+
+        //if (other.gameObject.GetComponentInChildren<Animator>() != null)
+        //{
+        //    Debug.Log("аниматор игрока найден");
+        //}
         //if (skinPlayer.GetComponentInChildren<Animator>() != null)
         //{
         //    Debug.Log("аниматор игрока найден");
         //}
+
+
         if (currentSlider.value < 0.25f || currentSlider.value > 0.5f)          // неудачное ограбление
         {
             animatorTarget.SetBool("Rob", true);
-            player.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
+            // player.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
             turnAroundIn = true;
             other.GetComponent<TestPlayerScript>().MoveRobUnluckPlayer();
             dollarCountManagerScript.DollarsAdd(valueDollarUnluck, false);
-            
+
             audioSTarget.PlayOneShot(audioClipsRob[1]);
-            //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
-            
+            other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
+
             currentSlider.gameObject.SetActive(false);
             isRobbed = true;
             return;
@@ -295,19 +314,25 @@ public class TargetScript : MonoBehaviour
         else                                                     // удачное ограбление
         {
             //Debug.Log("попала в зеленую полосу");
-            audioSTarget.PlayOneShot(audioClipsRob[0]);
-            player.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
-            player.gameObject.GetComponentInChildren<Animator>().SetBool("StealYes", true);
-            
+
+            other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
+            other.gameObject.GetComponentInChildren<Animator>().SetBool("StealYes", true);
+
+
+            Invoke("PlayCashSound", 0.5f);
+
             if (currentType == Types.typeOfTarget.green)
             {
                 other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
             }
             isRobbed = true;
             dollarCountManagerScript.DollarsAdd(valueDollarPerson, true);
-           
+
             currentSlider.gameObject.SetActive(false);
-            player.gameObject.GetComponentInChildren<Animator>().SetBool("StealYes", false);
+            //other.gameObject.GetComponentInChildren<Animator>().SetBool("StealYes", false);
+
+
+            other.GetComponent<TestPlayerScript>().StopAnimPlayer(isRobbed);
             robStage = 2;
             // Debug.Log("успех ограбление хороший");
             //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
@@ -315,4 +340,10 @@ public class TargetScript : MonoBehaviour
         }
 
     }
+
+    void PlayCashSound()
+    {
+        audioSTarget.PlayOneShot(audioClipsRob[0]);
+    }
 }
+    
