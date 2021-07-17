@@ -6,53 +6,46 @@ using UnityEngine.UI;
 
 public class TimeToTalkScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Types.typeOfTarget currentType;
-
-    public UnityAction onPlayerLose;
-
-
     public enum PlayerState
     {
         TalkStart,
         TalkEnd,
         None,
+        CanNotTalk,
     }
-    public PlayerState playerState = PlayerState.TalkEnd;
-
-    public int time;
+    public PlayerState playerState;
+    public Types.typeOfTarget currentType;
+    //public UnityAction onPlayerLose;
     public Transform GoToTalk;
-    public Transform EndToTall;
-
-    public Slider slider;
-
-    float timeStart = 6f;
-    public float timeCurrent;
-    //float secondsValue = 2f;
-    float secondsValueCurrent;
-
-    public int maxTime;
-    public float timeLeft;
-
+    public Transform EndToTalk;
     public GameObject player;
-    public PlayerLogic testPlayerScript;
-
-    public float distance;
-
-    public bool usableSpace = true;
-
+    public GameObject iconHide;
+    public Slider slider;
     public AudioSource audioSourseCrowd;
     public AudioClip audioClipCrowd;
+
+    PlayerLogic playerScript;
+    public float timeCurrent;
+    public int time;
+    public int maxTime;
+    public float timeLeft;
+    public float distance;
+    public bool usableSpace = true;
+
+    
+    float secondsValueCurrent;
+    float timeStart = 6f;
     bool playClip;
 
     public void StateMachine()
     {
-        if (player !=null) {
+        if (player != null)
+        {
+
             switch (playerState)
             {
-
                 case PlayerState.TalkStart:
-                    FindObjectOfType<PlayerLogic>().enabled =  false;
+                    FindObjectOfType<PlayerLogic>().enabled = false;
                     if (Vector3.Distance(player.transform.position, GoToTalk.position) > 0.3f)
                     {
                         player.transform.position = Vector3.MoveTowards(player.transform.position, GoToTalk.position, 2 * Time.deltaTime);
@@ -64,25 +57,28 @@ public class TimeToTalkScript : MonoBehaviour
 
                     break;
                 case PlayerState.TalkEnd:
-                    backToend();
+                    backToEnd();
                     break;
+                case PlayerState.CanNotTalk:
+                   
+                    break;
+
             }
         }
     }
-    void backToend()
+
+    public void DestroyTarget()
     {
-        //audioSourseCrowd.PlayOneShot(audioClipCrowd);
-        player.transform.position = Vector3.MoveTowards(player.transform.position, EndToTall.position, 2 * Time.deltaTime);
-        if (Vector3.Distance(player.transform.position, EndToTall.position) < 0.3f)
-        {
-            FindObjectOfType<PlayerLogic>().enabled = true;
-            usableSpace = true;
-            playerState = PlayerState.None;
-        }
+        Destroy(this);
     }
+    private void Awake()
+    {
+        slider.gameObject.SetActive(false);
+        iconHide.SetActive(false);
+    }
+
     void Start()
     {
-        testPlayerScript = GetComponent<PlayerLogic>();
         slider.maxValue = maxTime;
         slider.value = maxTime;
         timeLeft = maxTime;
@@ -90,16 +86,63 @@ public class TimeToTalkScript : MonoBehaviour
         secondsValueCurrent = 0;
         audioSourseCrowd = GetComponent<AudioSource>();
         playClip = true;
+        playerState = PlayerState.None;
     }
 
+    void Update()
+    {
+        StateMachine();
+        secondsValueCurrent += Time.deltaTime;
+        if (player != null && playerScript != null)
+        {
+            if (playerState == PlayerState.TalkStart)
+            {
+                PlayerInDist();
+            }
+        }
+
+        // TODO оставлено пока для работы над слайдером
+        //if (player != null && player.GetComponent<PlayerLogic>())
+        //{
+        //    if (Vector3.Distance(player.transform.position, transform.position) <= distance)
+        //    {
+        //        PlayerInDist();
+        //    }
+        //}
+    }
+
+    void backToEnd()
+    {
+        player.transform.position = Vector3.MoveTowards(player.transform.position, EndToTalk.position, 2 * Time.deltaTime);
+        if (Vector3.Distance(player.transform.position, EndToTalk.position) < 0.3f)
+        {
+            playerScript.enabled = true;
+            usableSpace = true;
+            playerState = PlayerState.None;
+            // TODO добавить обнуление полей игрок и его скрипт? возможно не надо, потому что игрок один и у него запоминается стадия ?
+            if (timeLeft < 0)
+            {
+                playerState = PlayerState.CanNotTalk;
+            }
+        }
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerLogic>())
+        {
+            iconHide.SetActive(true);
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
-        player = other.gameObject;
-        if (player.GetComponent<PlayerLogic>())
+        if (other.GetComponent<PlayerLogic>())
         {
+            playerScript = other.GetComponent<PlayerLogic>();
+            player = other.gameObject;
             if (Input.GetKeyDown(KeyCode.Space) && usableSpace && timeLeft > 0)
             {
-                Debug.Log("Input.GetKeyDown(KeyCode.Space)");
+                slider.gameObject.SetActive(true);
                 usableSpace = false;
                 if (playerState == PlayerState.TalkStart)
                 {
@@ -113,38 +156,30 @@ public class TimeToTalkScript : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         player = null;
+        iconHide.SetActive(false);
     }
 
+    // TODO метод не отображает смысл, переименовать или заделить как-то
     void PlayerInDist()
     {
-       
-        if (timeLeft > 0) {
+
+        if (timeLeft > 0)
+        {
             StartCoroutine(timer());
-            
-            
         }
-        else {
+        else
+        {
             if (playClip)
             {
                 PlayClipCrowd();
             }
             playerState = PlayerState.TalkEnd;
         }
-        
-    }
-    void Update()
-    {
-        StateMachine();
-        secondsValueCurrent += Time.deltaTime;
-        if (player != null && player.GetComponent<PlayerLogic>()) {
-            if (Vector3.Distance(player.transform.position, transform.position) <= distance)
-            {
-                PlayerInDist();
-            }
-        }
+
     }
 
     void PlayClipCrowd()
@@ -152,17 +187,11 @@ public class TimeToTalkScript : MonoBehaviour
         audioSourseCrowd.PlayOneShot(audioClipCrowd);
         playClip = false;
     }
+
     IEnumerator timer()
     {
         yield return new WaitForSeconds(1);
-        timeLeft = timeLeft - 1* Time.deltaTime;
+        timeLeft = timeLeft - 1 * Time.deltaTime;
         slider.value = timeLeft;
     }
-
-    public void DestroyTarget()
-    {
-        //Destroy(GetComponent<TimeToTalkScript>());
-        Destroy(this);
-    }
-
 }

@@ -9,7 +9,7 @@ public class PoliceSpawner : MonoBehaviour
     public GameObject player;
     public GameObject police;
     public Image alarmSign;
-    public GameObject alarmSignLeft;
+    public GameObject alarmSignLeft;   // TODO если будет скрипт на канвасе, то перенести это выставление туда
     public GameObject alarmSignRight;
 
     Vector3 playerPosition;

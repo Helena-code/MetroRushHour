@@ -20,6 +20,8 @@ public class TargetScript : MonoBehaviour
     //public Text dollarText;
     public GameObject dollarManager;
     DollarCountManager dollarCountManagerScript;
+    public GameObject particleMoney;
+    public GameObject canRobIcon;
     public int robStage = 0;
     // public int numTryToRob = 0;
     public bool isRobbed;
@@ -45,6 +47,8 @@ public class TargetScript : MonoBehaviour
 
     void Awake()
     {
+        particleMoney.GetComponent<ParticleSystem>().Stop();
+        canRobIcon.SetActive(false);
         // targetPos =transform.position;
         dollarManager = Camera.main.gameObject;
         dollarCountManagerScript = dollarManager.GetComponent<DollarCountManager>();
@@ -138,6 +142,10 @@ public class TargetScript : MonoBehaviour
 
         //}
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        canRobIcon.SetActive(true);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -242,6 +250,7 @@ public class TargetScript : MonoBehaviour
         //    other.GetComponent<TestPlayerScript>().TargetingOff();
         //}
         currentSlider.gameObject.SetActive(false);
+        canRobIcon.SetActive(false);
     }
     public void ChangeColorRubLucky()
     {
@@ -306,6 +315,12 @@ public class TargetScript : MonoBehaviour
             FindObjectOfType<PoliceSpawner>().SpawnPolice();
             audioSTarget.PlayOneShot(audioClipsRob[1]);
             other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
+            // other.GetComponent<PlayerLogic>().particleMoney.SetActive(true);
+            //other.GetComponent<PlayerLogic>().particleMoney.GetComponent<ParticleSystem>().Play(); 
+            //other.GetComponent<PlayerLogic>().PlayParticleDollar(); 
+
+            PlayParticleDollar(); 
+
 
             currentSlider.gameObject.SetActive(false);
             isRobbed = true;
@@ -313,8 +328,6 @@ public class TargetScript : MonoBehaviour
         }
         else                                                     // удачное ограбление
         {
-            //Debug.Log("попала в зеленую полосу");
-
             other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
             other.gameObject.GetComponentInChildren<Animator>().SetBool("StealYes", true);
 
@@ -327,14 +340,14 @@ public class TargetScript : MonoBehaviour
             }
             isRobbed = true;
             dollarCountManagerScript.DollarsAdd(valueDollarPerson, true);
-
+            dollarCountManagerScript.ShowDollarIconSuccess();
             currentSlider.gameObject.SetActive(false);
             //other.gameObject.GetComponentInChildren<Animator>().SetBool("StealYes", false);
 
 
             other.GetComponent<PlayerLogic>().StopAnimPlayer(isRobbed);
             robStage = 2;
-            // Debug.Log("успех ограбление хороший");
+           
             //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);
             return;
         }
@@ -344,6 +357,17 @@ public class TargetScript : MonoBehaviour
     void PlayCashSound()
     {
         audioSTarget.PlayOneShot(audioClipsRob[0]);
+    }
+
+    public void PlayParticleDollar()
+    {
+        particleMoney.GetComponent<ParticleSystem>().Play();  // TODO сделать ссылку на скрипт в эвейке
+        StartCoroutine(StopParticleDollar());
+    }
+    IEnumerator StopParticleDollar()
+    {
+        yield return new WaitForSeconds(1.5f);
+        particleMoney.GetComponent<ParticleSystem>().Stop();
     }
 }
     

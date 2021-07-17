@@ -10,6 +10,7 @@ public class DollarCountManager : MonoBehaviour
     //public Text textPrefab;
     public int DollarsToWin;
     public Text dollarText;
+    public GameObject DollarSuccess;
     int addingTemp = 0;
 
     // public  int dollarSum;
@@ -31,6 +32,7 @@ public class DollarCountManager : MonoBehaviour
         Dollar.dollarSum = 0;
         Dollar.dollarFinal = DollarsToWin;
         dollarText.text = "Dollars: " + Dollar.dollarSum.ToString() + " / " + Dollar.dollarFinal.ToString();
+        DollarSuccess.SetActive(false);
     }
     private void Update()
     {
@@ -83,9 +85,19 @@ public class DollarCountManager : MonoBehaviour
 
     }
 
+    public void ShowDollarIconSuccess()
+    {
+        DollarSuccess.SetActive(true);
+        StartCoroutine(HideDollarSuccessIcon());
+    }
     void StartFinalScene()
     {
         SceneManager.LoadScene("GoodEndScene");
     }
 
+    IEnumerator HideDollarSuccessIcon()
+    {
+        yield return new WaitForSeconds(1f);
+        DollarSuccess.SetActive(false);
+    }
 }

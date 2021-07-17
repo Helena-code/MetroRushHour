@@ -151,7 +151,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2309499499094449516, guid: b915b52b1f45c754086f87081b68aefe, type: 3}
       propertyPath: m_Name
-      value: BadPerson_new_variantWolf
+      value: BadPerson_new_variantWolf1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816656436606124554, guid: b915b52b1f45c754086f87081b68aefe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b915b52b1f45c754086f87081b68aefe, type: 3}

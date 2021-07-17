@@ -20,6 +20,7 @@ public class PlayerLogic : MonoBehaviour
     public Transform leftPoint;
     public Transform frontPoint;
     public GameObject skin;
+   // public GameObject particleMoney;
 
     Vector3 currentMovement;
     string typeOfTarget;
@@ -38,7 +39,8 @@ public class PlayerLogic : MonoBehaviour
         colliderPlayer = GetComponent<Collider>();
         animatorPlayer = GetComponentInChildren<Animator>();
         colorchange = GetComponent<ColorChange>();
-
+        // particleMoney.SetActive(false);
+        //particleMoney.GetComponent<ParticleSystem>().Stop();
         //animatorPlayer.SetBool("Walk", false);
     }
     private void FixedUpdate()
@@ -197,4 +199,15 @@ public class PlayerLogic : MonoBehaviour
     {
         animatorPlayer.SetBool("StealYes", false);
     }
+
+   // public void PlayParticleDollar()
+   // {
+   //     particleMoney.GetComponent<ParticleSystem>().Play();
+   //     StartCoroutine(StopParticleDollar());
+   // }
+   //IEnumerator StopParticleDollar()
+   // {
+   //     yield return new WaitForSeconds(1.5f);
+   //     particleMoney.GetComponent<ParticleSystem>().Stop();
+   // }
 }
