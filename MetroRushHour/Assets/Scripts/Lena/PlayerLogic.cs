@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TestPlayerScript : MonoBehaviour
+public class PlayerLogic : MonoBehaviour
 {
     Rigidbody rigidbodyPlayer;
     Transform transformPlayer;

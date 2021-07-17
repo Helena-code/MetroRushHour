@@ -6,18 +6,24 @@ using UnityEngine.Events;
 
 public class PoliceMovement : MonoBehaviour
 {
-    Transform player;
-    Vector3 endPosition;
-    bool playerCaught = false;
-    bool playerInSight = false;
     public float walkingSpeed = 2f;
     public float chasingSpeed = 3f;
-    public UnityAction onPlayerLose;
+
+    Transform player;
+    Vector3 endPosition;
+   // bool playerCaught = false;
+    bool playerInSight = false;
+   
+    //public UnityAction onPlayerLose;
+
+
     void Start()
     {
-        endPosition = new Vector3(-transform.position.x + 50, transform.position.y, transform.position.z); 
+        //endPosition = new Vector3(-transform.position.x + 50, transform.position.y, transform.position.z); 
+        endPosition = new Vector3(-transform.position.x*2f, transform.position.y, transform.position.z); // TODO проверить работу и удалить
 
     }
+
     void Update()
     {
         if (playerInSight)
@@ -26,12 +32,13 @@ public class PoliceMovement : MonoBehaviour
             float distance = Vector3.Distance(player.position, transform.position);
             if (distance <= 1f)
             {
+                // TODO юнитиэкшн что делает, а также убрать загрузку сцены, если будет куда
                 //playerCaught = true;
-                SceneManager.LoadScene(2); // ����� ������ �������!!!
-                if (onPlayerLose != null)
-                {
-                    onPlayerLose.Invoke();
-                }
+                SceneManager.LoadScene(2);
+                //if (onPlayerLose != null)
+                //{
+                //    onPlayerLose.Invoke();
+                //}
             }
         }
         else

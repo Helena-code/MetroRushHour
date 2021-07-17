@@ -141,7 +141,7 @@ public class TargetScript : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<TestPlayerScript>() != null)
+        if (other.GetComponent<PlayerLogic>() != null)
         {
             //    other.GetComponent<TestPlayerScript>().TargetingOn(currentTarget, currentSlider);
             //}
@@ -156,7 +156,7 @@ public class TargetScript : MonoBehaviour
                     // targetPos = transform.position;
                     //skinPlayer.GetComponentInChildren<Animator>().SetBool("Steal", true);
 
-                    other.gameObject.GetComponent<TestPlayerScript>().LookAtTarget(transform.position);
+                    other.gameObject.GetComponent<PlayerLogic>().LookAtTarget(transform.position);
                     other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", true);
                     // return;
                 }
@@ -301,9 +301,9 @@ public class TargetScript : MonoBehaviour
             animatorTarget.SetBool("Rob", true);
             // player.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
             turnAroundIn = true;
-            other.GetComponent<TestPlayerScript>().MoveRobUnluckPlayer();
+            other.GetComponent<PlayerLogic>().MoveRobUnluckPlayer();
             dollarCountManagerScript.DollarsAdd(valueDollarUnluck, false);
-
+            FindObjectOfType<PoliceSpawner>().SpawnPolice();
             audioSTarget.PlayOneShot(audioClipsRob[1]);
             other.gameObject.GetComponentInChildren<Animator>().SetBool("Steal", false);
 
@@ -323,7 +323,7 @@ public class TargetScript : MonoBehaviour
 
             if (currentType == Types.typeOfTarget.green)
             {
-                other.GetComponent<TestPlayerScript>().colorchange.ChangeColor();
+                other.GetComponent<PlayerLogic>().colorchange.ChangeColor();
             }
             isRobbed = true;
             dollarCountManagerScript.DollarsAdd(valueDollarPerson, true);
@@ -332,7 +332,7 @@ public class TargetScript : MonoBehaviour
             //other.gameObject.GetComponentInChildren<Animator>().SetBool("StealYes", false);
 
 
-            other.GetComponent<TestPlayerScript>().StopAnimPlayer(isRobbed);
+            other.GetComponent<PlayerLogic>().StopAnimPlayer(isRobbed);
             robStage = 2;
             // Debug.Log("успех ограбление хороший");
             //skinPlayer.GetComponent<Animator>().SetBool("Steal", false);

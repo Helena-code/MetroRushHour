@@ -35,7 +35,7 @@ public class TimeToTalkScript : MonoBehaviour
     public float timeLeft;
 
     public GameObject player;
-    public TestPlayerScript testPlayerScript;
+    public PlayerLogic testPlayerScript;
 
     public float distance;
 
@@ -52,7 +52,7 @@ public class TimeToTalkScript : MonoBehaviour
             {
 
                 case PlayerState.TalkStart:
-                    FindObjectOfType<TestPlayerScript>().enabled =  false;
+                    FindObjectOfType<PlayerLogic>().enabled =  false;
                     if (Vector3.Distance(player.transform.position, GoToTalk.position) > 0.3f)
                     {
                         player.transform.position = Vector3.MoveTowards(player.transform.position, GoToTalk.position, 2 * Time.deltaTime);
@@ -75,14 +75,14 @@ public class TimeToTalkScript : MonoBehaviour
         player.transform.position = Vector3.MoveTowards(player.transform.position, EndToTall.position, 2 * Time.deltaTime);
         if (Vector3.Distance(player.transform.position, EndToTall.position) < 0.3f)
         {
-            FindObjectOfType<TestPlayerScript>().enabled = true;
+            FindObjectOfType<PlayerLogic>().enabled = true;
             usableSpace = true;
             playerState = PlayerState.None;
         }
     }
     void Start()
     {
-        testPlayerScript = GetComponent<TestPlayerScript>();
+        testPlayerScript = GetComponent<PlayerLogic>();
         slider.maxValue = maxTime;
         slider.value = maxTime;
         timeLeft = maxTime;
@@ -95,7 +95,7 @@ public class TimeToTalkScript : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         player = other.gameObject;
-        if (player.GetComponent<TestPlayerScript>())
+        if (player.GetComponent<PlayerLogic>())
         {
             if (Input.GetKeyDown(KeyCode.Space) && usableSpace && timeLeft > 0)
             {
@@ -139,7 +139,7 @@ public class TimeToTalkScript : MonoBehaviour
     {
         StateMachine();
         secondsValueCurrent += Time.deltaTime;
-        if (player != null && player.GetComponent<TestPlayerScript>()) {
+        if (player != null && player.GetComponent<PlayerLogic>()) {
             if (Vector3.Distance(player.transform.position, transform.position) <= distance)
             {
                 PlayerInDist();

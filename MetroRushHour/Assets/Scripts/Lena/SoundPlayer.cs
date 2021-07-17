@@ -14,7 +14,7 @@ public class SoundPlayer : MonoBehaviour
 
      public void PlaySoundStep()
     {
-        // audioSoursePlayer.PlayOneShot(audioClipsRun[Random.Range(0, audioClipsRun.Length)]);
-        audioSoursePlayer.PlayOneShot(testClip);
+        audioSoursePlayer.PlayOneShot(audioClipsRun[Random.Range(0, audioClipsRun.Length)]);
+        //audioSoursePlayer.PlayOneShot(testClip);
     }
 }

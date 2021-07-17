@@ -6,25 +6,32 @@ using UnityEngine.UI;
 public class SliderRob : MonoBehaviour
 {
     Slider sliderRob;
-  public  float speed;
+    public float speed;
     private void Awake()
     {
         sliderRob = GetComponent<Slider>();
-        sliderRob.value = 0.15f;
+        
+    }
+    private void Start()
+    {
+        sliderRob.value = 0.2f;
     }
     void Update()
     {
-        sliderRob.value += Time.deltaTime * speed;
-        if (sliderRob.value > 0.9f)
+        
+        if (sliderRob.value > 0.9f|| sliderRob.value < 0.1f)
         {
             //currentSliderRob.value -= Time.deltaTime;
             speed *= -1;
         }
-        else if (sliderRob.value < 0.1f)
-        {
-            //currentSliderRob.value += Time.deltaTime;
-            speed *= -1;
-        }
+        sliderRob.value += Time.deltaTime * speed;
+
+
+        //else if (sliderRob.value < 0.1f)
+        //{
+        //    //currentSliderRob.value += Time.deltaTime;
+        //    speed *= -1;
+        //}
 
     }
     //public void SetSliderLevel(bool l1, bool l2, bool l3)

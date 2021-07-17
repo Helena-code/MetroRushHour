@@ -8,6 +8,7 @@ public class SlideManager : MonoBehaviour
     public GameObject slideShowCatch;
     public GameObject slideShowEndGood;
     public GameObject slideShowEndBad;
+
     private void Awake()
     {
         slideShowBeginning.SetActive(false);
@@ -15,15 +16,7 @@ public class SlideManager : MonoBehaviour
         slideShowEndGood.SetActive(false);
         slideShowEndBad.SetActive(false);
     }
-    private void Update()
-    {
-        //реяр сдюкхрэ бшгнб лемедфепю яжем
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            StartSlideBeginning();
-        }
-
-    }
+   
     public void StartSlideBeginning()
     {
         slideShowBeginning.SetActive(true);
