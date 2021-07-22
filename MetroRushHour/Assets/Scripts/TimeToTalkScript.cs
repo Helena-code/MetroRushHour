@@ -32,7 +32,6 @@ public class TimeToTalkScript : MonoBehaviour
     public float distance;
     public bool usableSpace = true;
 
-    
     float secondsValueCurrent;
     float timeStart = 6f;
     bool playClip;
@@ -45,7 +44,7 @@ public class TimeToTalkScript : MonoBehaviour
             switch (playerState)
             {
                 case PlayerState.TalkStart:
-                    FindObjectOfType<PlayerLogic>().enabled = false;
+                    playerScript.enabled = false;
                     if (Vector3.Distance(player.transform.position, GoToTalk.position) > 0.3f)
                     {
                         player.transform.position = Vector3.MoveTowards(player.transform.position, GoToTalk.position, 2 * Time.deltaTime);
@@ -57,19 +56,22 @@ public class TimeToTalkScript : MonoBehaviour
 
                     break;
                 case PlayerState.TalkEnd:
-                    backToEnd();
+                    BackToEnd();
                     break;
                 case PlayerState.CanNotTalk:
-                   
-                    break;
 
+                    break;
             }
         }
     }
 
     public void DestroyTarget()
     {
-        Destroy(this);
+        if (player != null)
+        {
+            player.GetComponent<PlayerRunAway>().MoveAway();
+            Destroy(this);
+        }
     }
     private void Awake()
     {
@@ -91,15 +93,16 @@ public class TimeToTalkScript : MonoBehaviour
 
     void Update()
     {
-        StateMachine();
-        secondsValueCurrent += Time.deltaTime;
-        if (player != null && playerScript != null)
-        {
-            if (playerState == PlayerState.TalkStart)
+            StateMachine();
+            secondsValueCurrent += Time.deltaTime;
+            if (player != null && playerScript != null)
             {
-                PlayerInDist();
+                if (playerState == PlayerState.TalkStart)
+                {
+                    PlayerInDist();
+                }
             }
-        }
+
 
         // TODO оставлено пока для работы над слайдером
         //if (player != null && player.GetComponent<PlayerLogic>())
@@ -111,7 +114,7 @@ public class TimeToTalkScript : MonoBehaviour
         //}
     }
 
-    void backToEnd()
+    void BackToEnd()
     {
         player.transform.position = Vector3.MoveTowards(player.transform.position, EndToTalk.position, 2 * Time.deltaTime);
         if (Vector3.Distance(player.transform.position, EndToTalk.position) < 0.3f)
@@ -125,8 +128,8 @@ public class TimeToTalkScript : MonoBehaviour
                 playerState = PlayerState.CanNotTalk;
             }
         }
-        
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerLogic>())
@@ -134,6 +137,7 @@ public class TimeToTalkScript : MonoBehaviour
             iconHide.SetActive(true);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<PlayerLogic>())
