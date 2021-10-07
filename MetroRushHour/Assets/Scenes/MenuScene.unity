@@ -1551,6 +1551,62 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6229674417448183982, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229674417448183982, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229674417448183982, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1632442737}
+    - target: {fileID: 6229674417448183982, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229674417448183982, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229674417448183982, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StartGameController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229674417448183982, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650657940101319799, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880188135485666965, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_Text
+      value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060464316913353042, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060464316913353045, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 15.2538
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060464316913353045, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 14.3105
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060464316913353045, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.1329956
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060464316913353045, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.7594
+      objectReference: {fileID: 0}
     - target: {fileID: 9060464317145870855, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
       propertyPath: m_Name
       value: Canvas (1)
@@ -1643,6 +1699,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9187860110698253363, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187860110698253363, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4085231884509965922, guid: 8b7bfb05082bb3443accfabe9bf16683, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
 --- !u!1 &1115412739
@@ -2533,7 +2597,7 @@ MonoBehaviour:
   slideShowCatch: {fileID: 170069503}
   slideShowEndGood: {fileID: 827041597}
   slideShowEndBad: {fileID: 199104245}
-  panelRepeat: {fileID: 0}
+  panelRepeat: {fileID: 2138889998}
 --- !u!114 &1632442735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3274,3 +3338,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004307564}
   m_CullTransparentMesh: 1
+--- !u!1 &2138889998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7650657940101319799, guid: b1fa17c1f26d6af42bb4f54c16161fa3, type: 3}
+  m_PrefabInstance: {fileID: 914209199}
+  m_PrefabAsset: {fileID: 0}
